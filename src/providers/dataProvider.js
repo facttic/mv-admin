@@ -31,10 +31,16 @@ const dataProvider = {
     };
   },
 
-  getOne: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-      data: json,
-    })),
+  getOne: async (resource, params) => {
+    try{
+        const url = `${apiUrl}/${resource}/${params.id}`;
+        console.log("getOne", url);
+        const {json} = await httpClient(url);
+        return {data: json};
+    } catch (e) {
+        throw new Error('Network error');
+    }
+  },
 
   getMany: async (resource, params) => {
     const query = {
@@ -65,11 +71,15 @@ const dataProvider = {
     };
   },
 
-  update: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
+  update: async (resource, params) => {
+    const url = `${apiUrl}/${resource}/${params.id}`;
+    console.log("Update at", url);
+    const { json } = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json })),
+    })
+    return  {data: json} ; 
+  },
 
   updateMany: async (resource, params) => {
     const query = {
