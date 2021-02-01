@@ -1,11 +1,11 @@
 import * as React from "react";
-import { List, Datagrid, TextField, EmailField, BooleanField, DeleteButton} from 'react-admin';
+import { List, Datagrid, TextField, BooleanField, DeleteButton} from 'react-admin';
 
 export const UserList = props => (
-    <List {...props}>
+    <List title="Usuarios"  {...props}>
         <Datagrid rowClick="edit">
             <TextField source="name" />
-            <EmailField source="email" />
+            <TextField source="email" />
             <BooleanField source="superadmin" />
             <DeleteButton/>
         </Datagrid>
