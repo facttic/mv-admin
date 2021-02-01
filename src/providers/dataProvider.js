@@ -103,11 +103,12 @@ const dataProvider = {
       data: { ...params.data, id: json.id },
     })),
 
-  delete: (resource, params) => {
+  delete: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
-    httpClient(url, {
+    const { json } = await httpClient(url, {
       method: "DELETE",
-    }).then(({ json }) => ({ data: json }));
+    })
+    return {data:json}
   },
 
   deleteMany: async (resource, params) => {
