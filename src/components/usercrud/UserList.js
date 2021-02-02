@@ -4,8 +4,8 @@ import { List, Datagrid, TextField, BooleanField, DeleteButton} from 'react-admi
 export const UserList = props => (
     <List title="Usuarios"  {...props}>
         <Datagrid rowClick="edit">
-            <TextField source="name" />
-            <TextField source="email" />
+            <TextField source="name" label="Nombre"/>
+            <TextField source="email" label="E-mail"/>
             <BooleanField source="superadmin" />
             <DeleteButton/>
         </Datagrid>
