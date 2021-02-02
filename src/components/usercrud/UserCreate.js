@@ -15,7 +15,7 @@ const matchPassword = (value, allValues) => {
 };
 
 const validateEmail = (value) => {
-  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  let reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   if (reg.test(value) === false) {
     return "Email incorrecto";
   }
