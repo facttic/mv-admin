@@ -9,9 +9,12 @@ import { LoginPage } from "./components/LoginPage";
 import { SULayout } from "./components/layout/SULayout";
 import authProvider from "./providers/authProvider";
 import dataProvider from "./providers/dataProvider";
+import localeProvider from "./providers/localeProvider";
+
 
 const App = () => (
   <Admin
+    i18nProvider={localeProvider}
     dataProvider={dataProvider}
     authProvider={authProvider}
     loginPage={LoginPage}
@@ -25,6 +28,8 @@ const App = () => (
       edit={UserEdit}
       icon={UserIcon}
     />
+
+
   </Admin>
 );
 

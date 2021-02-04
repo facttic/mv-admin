@@ -10,8 +10,8 @@ const minLength = (min) => (value) => {
 export const UserEdit = (props) => (
     <Edit title="Editando Usuario" {...props}>
         <SimpleForm >
-            <TextInput source="name" validate={[required(), minLength(3)]}/>
-            <TextInput source="email"  validate={[required()]}/>
+            <TextInput source="name" label='user.edit.name' validate={[required(), minLength(3)]}/>
+            <TextInput source="email" label='user.edit.email' validate={[required()]}/>
             <BooleanInput source="superadmin" />
         </SimpleForm>
     </Edit>

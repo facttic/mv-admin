@@ -28,22 +28,23 @@ const minLength = (min) => (value) => {
 };
 
 export const UserCreate = (props) => (
+    
   <Create title="Creando Usuario" {...props}>
     <SimpleForm>
       <TextInput
         source="name"
-        label="nombre"
+        label='user.create.name'
         validate={[required(), minLength(3)]}
       />
       <TextInput source="email" validate={[required(), validateEmail]} />
       <PasswordInput
         source="password"
-        label="contraseña"
+        label="user.create.password"
         validate={[required(), minLength(7)]}
       />
       <PasswordInput
         source="cpassword"
-        label="confirmación"
+        label="user.create.confirm"
         validate={[required(), matchPassword]}
       />
       <BooleanInput source="superadmin" />
