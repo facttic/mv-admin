@@ -157,6 +157,14 @@ const spanish = {
       email: "email",
     },
   },
+  manifestation:{
+    create: {
+      name: "Nombre",
+      uri: "URI",
+      user: "Usuario",
+      title: "Creando Manifestación",
+    }
+  }
 };
 
 export default spanish;

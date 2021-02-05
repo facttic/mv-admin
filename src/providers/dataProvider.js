@@ -25,6 +25,7 @@ const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
     const { json } = await httpClient(url);
+    console.log(json);
     return {
       data: json.data,
       total: json.total,

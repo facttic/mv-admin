@@ -9,6 +9,7 @@ import { UserEdit } from "./components/usercrud/UserEdit";
 import { LoginPage } from "./components/LoginPage";
 import { SULayout } from "./components/layout/SULayout";
 import { ManifestationList } from "./components/manifestationcrud/ManifestationList";
+import { ManifestationCreate } from "./components/manifestationcrud/ManifestationCreate";
 import authProvider from "./providers/authProvider";
 import dataProvider from "./providers/dataProvider";
 import localeProvider from "./providers/localeProvider";
@@ -34,6 +35,7 @@ const App = () => (
       name="manifestations"
       options={{ label: "Manifestaciones" }}
       list={ManifestationList}
+      create={ManifestationCreate}
       icon={GroupWorkIcon}
     />
   </Admin>
