@@ -20,7 +20,7 @@ export const ManifestationCreate = (props) => {
     "users",
     { page: 1, perPage: 999 },
     { field: "name", order: "ASC" },
-    { manifestation_id: null , superadmin:false}
+    { superadmin:false}
   );
   const arrayData = Object.keys(data).map((key) => {
     return data[key];
