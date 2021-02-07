@@ -153,9 +153,15 @@ const spanish = {
       confirm: "confirmación",
     },
     edit: {
-      name: "nombre",
-      email: "email",
+      name: "Nombre",
+      email: "E-mail",
+      manifestation: "Marcha",
     },
+    list:{
+      name: "Nombre",
+      email: "E-mail",
+      manifestation: "Marcha",
+    }
   },
   manifestation:{
     create: {
