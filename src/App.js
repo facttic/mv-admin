@@ -34,7 +34,7 @@ const App = () => (
 
     <Resource
       name="manifestations"
-      options={{ label: "Manifestaciones" }}
+      options={{ label: "Marchas" }}
       list={ManifestationList}
       create={ManifestationCreate}
       edit={ManifestationEdit}
