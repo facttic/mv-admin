@@ -19,7 +19,8 @@ export const ManifestationCreate = (props) => {
   const { data, loading, error } = useGetList(
     "users",
     { page: 1, perPage: 999 },
-    { field: "name", order: "ASC" }
+    { field: "name", order: "ASC" },
+    { manifestation_id: null , superadmin:false}
   );
   const arrayData = Object.keys(data).map((key) => {
     return data[key];
@@ -44,7 +45,7 @@ export const ManifestationCreate = (props) => {
           label="manifestation.create.uri"
           validate={[required()]}
         />
-        <SelectInput source="user" label="manifestation.create.user" optionText="name" choices={arrayData} />
+        <SelectInput source="user" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
       </SimpleForm>
     </Create>
   );
