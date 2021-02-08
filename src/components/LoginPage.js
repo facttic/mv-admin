@@ -5,28 +5,45 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import PeopleIcon from '@material-ui/icons/People';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { theme, typography } from "./theme";
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(() => ({
+  container: {
+    backgroundColor: "#ffffff",
+    borderRadius: "24px",
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    typography: typography.fontFamily,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    marginTop: theme.spacing(8),
+    margin: "auto",
+    padding: theme.spacing(4, 0),
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: "100%",
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    display: "flex",
+    flexDirection: "column",
+    margin: "auto",
+    alignItems: "center",
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    marginTop: theme.spacing(4),
+    backgroundColor: theme.palette.primary.main,
+    width: "150px",
+    display: "flex",
+    borderRadius: "24px"
   },
 }));
 
@@ -43,11 +60,12 @@ export const LoginPage = ({ theme }) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div className={classes.fondo}>
+    <Container className={classes.container} component="main" maxWidth="xs">
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
-        <LockOutlinedIcon />
+        <PeopleIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
         Marchas Virtuales
@@ -56,17 +74,17 @@ export const LoginPage = ({ theme }) => {
         Admin
       </Typography>
       <form className={classes.form} onSubmit={submit}>
-        <TextField
+        <TextField 
           name="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          variant="outlined"
+          variant="standard"
           margin="normal"
           required
           fullWidth
           id="email"
-          label="Email Address"
+          label="Usuario"
           autoComplete="email"
           autoFocus
         />
@@ -75,19 +93,17 @@ export const LoginPage = ({ theme }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          variant="outlined"
+          variant="standard"
           margin="normal"
           required
           fullWidth
-          label="Password"
+          label="Contraseña"
           id="password"
           autoComplete="current-password"
         />
         <Button
           type="submit"
-          fullWidth
           variant="contained"
-          color="primary"
           className={classes.submit}
           onClick={submit}
         >
@@ -97,5 +113,6 @@ export const LoginPage = ({ theme }) => {
       </div>
       <Notification />
       </Container>
+      </div>
   );
 };
