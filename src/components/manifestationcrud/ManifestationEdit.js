@@ -50,7 +50,7 @@ export const ManifestationEdit = (props) => {
   console.log(User);
 
   return (
-    <Edit title="manifestation.create.title" {...props}>
+    <Edit undoable={false} title="manifestation.create.title" {...props}>
       <SimpleForm>
         <TextInput
           source="name"
