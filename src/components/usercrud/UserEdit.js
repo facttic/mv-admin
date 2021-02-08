@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Edit, SimpleForm, TextInput, BooleanInput, required , TextField} from 'react-admin';
+import { Edit, SimpleForm, TextInput, BooleanInput, required} from 'react-admin';
 import {ManifestationTextField} from "./ManifestationTextField";
 
 const minLength = (min) => (value) => {
@@ -8,7 +8,8 @@ const minLength = (min) => (value) => {
     }
   };
 
-export const UserEdit = (props) => (
+export const UserEdit = (props) => {
+  return (
     <Edit undoable={false} title="Editando Usuario" {...props}>
         <SimpleForm >
             <TextInput source="name" label='user.edit.name' validate={[required(), minLength(3)]}/>
@@ -20,4 +21,4 @@ export const UserEdit = (props) => (
             <BooleanInput source="superadmin" />
         </SimpleForm>
     </Edit>
-);
+)};

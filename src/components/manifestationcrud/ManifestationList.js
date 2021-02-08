@@ -8,13 +8,12 @@ export const ManifestationList = (props) => {
       title="Manifestaciones"
       exporter={false}
       bulkActionButtons={false}
-      {...props}
-    >
+      {...props}>
       <Datagrid rowClick="edit">
         <TextField source="name" label="Nombre" />
         <TextField source="uri" label="URL" />
         <UserTextField label="Admin" id={props.id}/>
-        <DeleteButton />
+        <DeleteButton undoable={false} />
       </Datagrid>
     </List>
   );

@@ -12,7 +12,6 @@ const authProvider = {
     });
     try {
       const response = await fetch(request);
-      console.log(response);
       if (response.status < 200 || response.status >= 300) {
         throw new Error(response.statusText);
       }
@@ -24,7 +23,6 @@ const authProvider = {
   },
   // called when the user clicks on the logout button
   logout: async () => {
-    console.log("logout");
     try {
       const headers = new Headers({ "Content-Type": "application/json" });
       const { token } = JSON.parse(localStorage.getItem("auth"));
@@ -34,7 +32,6 @@ const authProvider = {
         headers: headers,
       });
       const response = await fetch(request);
-      console.log(response);
       if (response.status < 200 || response.status >= 300) {
         throw new Error(response.statusText);
       }

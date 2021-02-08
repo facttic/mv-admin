@@ -6,7 +6,7 @@ import {
   required,
   useGetList,
   Loading,
-  SelectInput,
+  SelectArrayInput,
 } from "react-admin";
 
 const minLength = (min) => (value) => {
@@ -25,7 +25,6 @@ export const ManifestationCreate = (props) => {
   const arrayData = Object.keys(data).map((key) => {
     return data[key];
   });
-  console.log(arrayData);
   if (loading) {
     return <Loading />;
   }
@@ -45,7 +44,7 @@ export const ManifestationCreate = (props) => {
           label="manifestation.create.uri"
           validate={[required()]}
         />
-        <SelectInput source="user" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
+        <SelectArrayInput source="user" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
       </SimpleForm>
     </Create>
   );

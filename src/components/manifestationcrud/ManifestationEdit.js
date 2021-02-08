@@ -6,7 +6,8 @@ import {
   required,
   useGetList,
   Loading,
-  SelectInput,
+  SelectArrayInput,
+  ReferenceArrayInput,
 } from "react-admin";
 import { useState } from "react";
 
@@ -17,8 +18,8 @@ const minLength = (min) => (value) => {
 };
 
 export const ManifestationEdit = (props) => {
-  let [Users, User, listUsers, manifestationUser] = useState("");
-  User = useGetList(
+  let [Users, UsersSelected, listUsers, usersSelectedList] = useState("");
+  UsersSelected = useGetList(
     "users",
     { page: 1, perPage: 999 },
     { field: "name", order: "ASC" },
@@ -31,23 +32,16 @@ export const ManifestationEdit = (props) => {
     { superadmin: false }
   );
 
-  if (User.loading || Users.loading) {
-    console.log("loadings", User.loading, Users.loading);
+  if (UsersSelected.loading || Users.loading) {
     return <Loading />;
   }
 
-  if (User.error || Users.error) {
+  if (UsersSelected.error || Users.error) {
     return <p>ERROR</p>;
   }
-  listUsers = Object.keys(Users.data).map((key) => {
-    return Users.data[key];
+  usersSelectedList = Object.keys(UsersSelected.data).map((key) => {
+    return UsersSelected.data[key].id;
   });
-  const manifestationUserList = Object.keys(User.data).map((key) => {
-    return Users.data[key];
-  });
-  manifestationUser =
-    manifestationUserList[0] === undefined ? "" : manifestationUserList[0].id;
-  console.log(User);
 
   return (
     <Edit undoable={false} title="manifestation.create.title" {...props}>
@@ -62,14 +56,13 @@ export const ManifestationEdit = (props) => {
           label="manifestation.create.uri"
           validate={[required()]}
         />
-        <SelectInput
-          initialValue={manifestationUser}
-          source="user_id"
-          label="manifestation.create.user"
-          optionText="name"
-          choices={listUsers}
-          validate={[required()]}
-        />
+        <ReferenceArrayInput
+          source="users_id"
+          reference="users"
+          filter={{ superadmin: false }}
+        >
+          <SelectArrayInput initialValue={usersSelectedList} label="manifestation.create.user" optionText="name" />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
   );
