@@ -169,6 +169,9 @@ const spanish = {
       uri: "URI",
       user: "Usuario",
       title: "Creando Manifestación",
+    },
+    management:{
+      title: "Titulo",
     }
   }
 };
