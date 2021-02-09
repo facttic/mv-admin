@@ -55,7 +55,6 @@ export const LoginPage = ({ theme }) => {
   const notify = useNotify();
   const submit = (e) => {
     e.preventDefault();
-    console.log("submit");
     login({ email, password }).catch(() => notify("Invalid email or password"));
   };
 

@@ -34,7 +34,6 @@ const dataProvider = {
   getOne: async (resource, params) => {
     try{
         const url = `${apiUrl}/${resource}/${params.id}`;
-        console.log("getOne", url);
         const {json} = await httpClient(url);
         return {data: json};
     } catch (e) {
@@ -73,7 +72,6 @@ const dataProvider = {
 
   update: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
-    console.log("Update at", url);
     const { json } = await httpClient(url, {
       method: "PUT",
       body: JSON.stringify(params.data),
