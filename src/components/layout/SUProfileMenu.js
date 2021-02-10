@@ -18,3 +18,4 @@ export const SUProfileMenu = (props) => (
     <ConfigurationMenu />
   </UserMenu>
 );
+

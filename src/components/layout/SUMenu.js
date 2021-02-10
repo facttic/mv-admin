@@ -29,7 +29,7 @@ const SUMenu = ({ onMenuClick, logout, props }) => {
                 />
             ))}
             {isXSmall && logout}
-            <Logout {...props} icon={<ExitToAppIcon/>} />;
+            <Logout {...props} icon={<ExitToAppIcon/>} />
         </div>
     );
 };

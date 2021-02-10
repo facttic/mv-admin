@@ -1,7 +1,4 @@
 import * as React from "react";
-import { AppBar } from "react-admin";
-import {SUProfileMenu} from './SUProfileMenu';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 //mas info en https://marmelab.com/react-admin/Theming.html#customizing-the-appbar-content
@@ -21,14 +18,9 @@ const useStyles = makeStyles({
 export const SUAppBar = props => {
     const classes = useStyles();
     return (
-        <AppBar userMenu={SUProfileMenu(props)} {...props}>
-            <Typography
-                variant="h6"
-                color="inherit"
-                className={classes.title}
-                id="react-admin-title"
-            />
+       // <AppBar userMenu={SUProfileMenu(props)} {...props}>
+       <div>
             <span className={classes.spacer} />
-        </AppBar>
+        </div>
     );
 };

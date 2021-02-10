@@ -41,10 +41,13 @@ const useStyles = makeStyles(() => ({
   submit: {
     marginTop: theme.spacing(4),
     backgroundColor: theme.palette.primary.main,
-    width: "150px",
+    width: "120px",
     display: "flex",
-    borderRadius: "24px"
+    borderRadius: "16px"
   },
+  title: {
+    fontWeight: "bold"
+  }
 }));
 
 export const LoginPage = ({ theme }) => {
@@ -59,17 +62,16 @@ export const LoginPage = ({ theme }) => {
   };
 
   return (
-    <div className={classes.fondo}>
     <Container className={classes.container} component="main" maxWidth="xs">
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
         <PeopleIcon />
       </Avatar>
-      <Typography component="h1" variant="h5">
+      <Typography className={classes.title} component="h1" variant="h6">
         Marchas Virtuales
       </Typography>
-      <Typography component="h1" variant="h6">
+      <Typography component="h1" variant="subtitle1">
         Admin
       </Typography>
       <form className={classes.form} onSubmit={submit}>
@@ -112,6 +114,5 @@ export const LoginPage = ({ theme }) => {
       </div>
       <Notification />
       </Container>
-      </div>
   );
 };
