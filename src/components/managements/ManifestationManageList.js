@@ -4,8 +4,9 @@ import {
   Datagrid,
   TextField,
   useGetIdentity,
-  Loading,
+  Loading
 } from "react-admin";
+import { Redirect } from 'react-router';
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Card from '@material-ui/core/Card';
@@ -30,25 +31,14 @@ export const ManifestationManageList = (props) => {
             No tiene asignado ninguna marcha
           </Typography>
           <Typography variant="body1">
-            Debera esperar a que le asignen una
+            Deberá esperar a que le asignen una
           </Typography>
         </Box>
         </CardContent>
       </Card>
     );
   }
-  return (
-    <List
-      filter={{ _id: identity.manifestation_id }}
-      title="Manifestaciones"
-      exporter={false}
-      bulkActionButtons={false}
-      {...props}
-    >
-      <Datagrid rowClick="edit">
-        <TextField source="name" label="Nombre" />
-        <TextField source="uri" label="URL" />
-      </Datagrid>
-    </List>
-  );
+  if(identity.manifestation_id){
+    return (<Redirect to={"/manifestations/"+ identity.manifestation_id} />);
+  }
 };

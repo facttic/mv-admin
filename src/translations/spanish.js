@@ -172,6 +172,54 @@ const spanish = {
     },
     management:{
       title: "Titulo",
+      subtitle: "Subtitulo",
+      description: "Descripción",
+      footer: "Footer",
+      sponsors: {
+        title: "Sponsors",
+        name: "Nombre",
+        logoUri: "LogoUri",
+        pageUri: "PageUri",
+      },
+      metadata:{
+        title: "Titulo",
+        keywords: "Keywords",
+        description: "Descripción",
+      },
+      styles: {
+        colors:{
+          background: "Background",
+          accent: "Accent",
+        },
+        title:{
+          font: "Fuente",
+          color: "Color",
+        },
+        subtitle:{
+          font: "Fuente",
+          color: "Color",
+        },
+        body:{
+          font: "Fuente",
+          color: "Color",
+        },
+        thumbnails:{
+          columns: "Columnas",
+          hover: "Hover",
+          border: "Border",
+        },
+        cards:{
+          darkmode: "Darkmode",
+        },
+      },
+      images:{
+        header:"Header",
+        favicon:"Favicon",
+        twitter:"Twitter",
+        facebook:"Facebook",
+      },
+      startDate: "Fecha de inicio",
+      endDate: "Fecha de cierre",
     }
   }
 };

@@ -54,7 +54,7 @@ const App = () => (
           edit={ManifestationManage}
           icon={GroupWorkIcon}
         />
-      ) : null,
+      ) : null
     ]}
   </Admin>
 );
