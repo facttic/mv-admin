@@ -10,12 +10,20 @@ import { theme } from "../theme";
 const useSidebarStyles = makeStyles({
     sidebar: {
         backgroundColor: 'white',
-        borderRadius: '48px',
         padding: "25px",
     },
     header: {
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        backgroundColor: 'white',
+        padding: theme.spacing(4, 2, 4, 2),
+        borderRadius: '48px'
+    },
+    menu: {
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: 'white',
+        borderRadius: '48px'
     },
     title: {
         fontWeight: "bold"
@@ -29,7 +37,7 @@ const useSidebarStyles = makeStyles({
 export const SUSideBar = props => {
 const classes = useSidebarStyles(props);
 return (
-    <Sidebar className={classes.sidebar} {...props}>
+    <div className={classes.menu}>
         <div className={classes.header}>
             <Avatar className={classes.avatar}>
                 <PeopleIcon />
@@ -43,6 +51,9 @@ return (
             </Typography>
             </div>
         </div>
+    <Sidebar className={classes.sidebar} {...props}>
+        
     </Sidebar>
+    </div>
 );
 };
