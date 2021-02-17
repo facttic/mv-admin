@@ -14,16 +14,16 @@ const httpClient = async (url, options = {}) => {
 
 const dataProvider = {
   getList: async (resource, params) => {
+    console.log("get List", resource, params);
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
     const asc = order === "ASC" ? "-" + field : field;
     const query = {
-      sort: "field " + asc,
-      skip: JSON.stringify((page - 1) * perPage),
-      limit: JSON.stringify(page * perPage),
-      filter: JSON.stringify(params.filter),
+      sortBy: field === "id" ? undefined : asc,
+      perPage: perPage,
+      page: page,
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    const url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(params.filter)}`;
     const { json } = await httpClient(url);
     return {
       data: json.data,
@@ -33,6 +33,7 @@ const dataProvider = {
 
   getOne: async (resource, params) => {
     try{
+        console.log("get one", resource, params);
         const url = `${apiUrl}/${resource}/${params.id}`;
         const {json} = await httpClient(url);
         return {data: json};
@@ -42,15 +43,15 @@ const dataProvider = {
   },
 
   getMany: async (resource, params) => {
-    const query = {
-      filter: JSON.stringify({ id: params.ids }),
-    };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    console.log("get Many", resource, params);
+    const url = `${apiUrl}/${resource}?${stringify({ _id: params.ids })}`;
     const { json } = await httpClient(url);
-    return { data: json };
+    console.log(json);
+    return { data: json.data };
   },
 
   getManyReference: async (resource, params) => {
+    console.log("get Many reference", resource, params);
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
     const query = {
@@ -62,11 +63,12 @@ const dataProvider = {
       }),
     };
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
-
-    const { headers, json } = await httpClient(url);
+    console.log(url);
+    const { json } = await httpClient(url);
+    console.log(json)
     return {
-      data: json,
-      total: parseInt(headers.get("content-range").split("/").pop(), 10),
+      data: json.list,
+      total: json.total,
     };
   },
 
