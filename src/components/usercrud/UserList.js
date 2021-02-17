@@ -6,12 +6,23 @@ import { TopToolbar, sanitizeListRestProps } from 'react-admin';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from "@material-ui/core/styles";
-import { theme } from "../theme";
+import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles((theme) => ({
   fab: {
     backgroundColor: theme.palette.primary.main,
   },
+  title: {
+    padding: theme.spacing(1, 2)
+  },
+  list: {
+    margin: theme.spacing(0, 6),
+  },
+  headerCell: {
+    backgroundColor: theme.palette.secondary.light,
+    fontWeight: "bold",
+  }
 }))
 
 const ListActions = (props) => {
@@ -29,9 +40,12 @@ const ListActions = (props) => {
 
   return (
     <TopToolbar className={classes.toolbar} {...sanitizeListRestProps(rest)}>
-
+      <div className={classes.title}>
+      <Typography variant="h6"> Usuarios </Typography>
+      </div>
+      <div>
       <Link to={`${basePath}/create`} >
-        <Fab className={classes.fab} aria-label="add"
+        <Fab className={classes.fab} aria-label="add" size="small"
           // onClick={() => { alert('Your custom action'); }}
           label="+"
         >
@@ -39,6 +53,7 @@ const ListActions = (props) => {
 
         </Fab>
       </Link>
+      </div>
     </TopToolbar>
   );
 };
@@ -46,8 +61,8 @@ const ListActions = (props) => {
 export const UserList = (props) => {
   const classes = useStyles();
   return (
-    <List className={classes.list} undoable={false} actions={<ListActions />} title="Usuarios" exporter={false} bulkActionButtons={false} {...props}>
-      <Datagrid rowClick="edit">
+    <List className={classes.list} classes={classes} undoable={false} actions={<ListActions />} title="Usuarios" exporter={false} bulkActionButtons={false} {...props}>
+      <Datagrid classes={classes} rowClick="edit">
         <TextField source="name" label="user.list.name" />
         <TextField source="email" label="user.list.email" />
         <ManifestationTextField label="user.list.manifestation" />

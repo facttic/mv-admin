@@ -14,14 +14,15 @@ import { ManifestationEdit } from "./components/manifestationcrud/ManifestationE
 import authProvider from "./providers/authProvider";
 import dataProvider from "./providers/dataProvider";
 import localeProvider from "./providers/localeProvider";
+import { theme } from "./components/theme";
 
 const App = () => (
-  <Admin
+  <Admin theme={theme}
     i18nProvider={localeProvider}
     dataProvider={dataProvider}
     authProvider={authProvider}
     loginPage={LoginPage}
-    layout={SULayout}
+    layout={(props) => <SULayout {...props} theme={theme} />}
   >
     <Resource
       name="users"
