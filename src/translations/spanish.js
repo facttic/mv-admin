@@ -157,20 +157,20 @@ const spanish = {
       email: "E-mail",
       manifestation: "Marcha",
     },
-    list:{
+    list: {
       name: "Nombre",
       email: "E-mail",
       manifestation: "Marcha",
-    }
+    },
   },
-  manifestation:{
+  manifestation: {
     create: {
       name: "Nombre",
       uri: "URI",
       user: "Usuario",
       title: "Creando Manifestación",
     },
-    management:{
+    management: {
       title: "Titulo",
       subtitle: "Subtitulo",
       description: "Descripción",
@@ -181,47 +181,51 @@ const spanish = {
         logoUri: "LogoUri",
         pageUri: "PageUri",
       },
-      metadata:{
+      metadata: {
         title: "Titulo",
         keywords: "Keywords",
         description: "Descripción",
       },
       styles: {
-        colors:{
+        colors: {
           background: "Background",
           accent: "Accent",
         },
-        title:{
-          font: "Fuente",
-          color: "Color",
+        text: {
+          title: {
+            font: "Fuente",
+            color: "Color",
+          },
+          subtitle: {
+            font: "Fuente",
+            color: "Color",
+          },
+          body: {
+            font: "Fuente",
+            color: "Color",
+          },
         },
-        subtitle:{
-          font: "Fuente",
-          color: "Color",
-        },
-        body:{
-          font: "Fuente",
-          color: "Color",
-        },
-        thumbnails:{
+        thumbnails: {
           columns: "Columnas",
-          hover: "Hover",
-          border: "Border",
+          colors: {
+            hover: "Hover",
+            border: "Border",
+          },
         },
-        cards:{
+        cards: {
           darkmode: "Darkmode",
         },
       },
-      images:{
-        header:"Header",
-        favicon:"Favicon",
-        twitter:"Twitter",
-        facebook:"Facebook",
+      images: {
+        header: "Header",
+        favicon: "Favicon",
+        twitter: "Twitter",
+        facebook: "Facebook",
       },
       startDate: "Fecha de inicio",
       endDate: "Fecha de cierre",
-    }
-  }
+    },
+  },
 };
 
 export default spanish;

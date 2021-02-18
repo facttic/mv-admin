@@ -11,7 +11,8 @@ import {
   SimpleFormIterator,
   BooleanInput,
   ImageInput,
-  ImageField
+  ImageField,
+  NumberInput,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -68,11 +69,23 @@ export const ManifestationManage = (props) => {
           label="manifestation.management.footer"
           validate={[required(), minLength(3)]}
         />
-        <ArrayInput source="sponsors" label="manifestation.management.sponsors.title">
+        <ArrayInput
+          source="sponsors"
+          label="manifestation.management.sponsors.title"
+        >
           <SimpleFormIterator>
-            <TextInput source="name" label="manifestation.management.sponsors.name"/>
-            <TextInput source="logoUri" label="manifestation.management.sponsors.logoUri"/>
-            <TextInput source="pageUri" label="manifestation.management.sponsors.pageUri"/>
+            <TextInput
+              source="name"
+              label="manifestation.management.sponsors.name"
+            />
+            <TextInput
+              source="logoUri"
+              label="manifestation.management.sponsors.logoUri"
+            />
+            <TextInput
+              source="pageUri"
+              label="manifestation.management.sponsors.pageUri"
+            />
           </SimpleFormIterator>
         </ArrayInput>
         {/*
@@ -104,9 +117,18 @@ export const ManifestationManage = (props) => {
           </AccordionSummary>
           <AccordionDetails>
             <div>
-              <TextInput source="metadata.title" label="manifestation.management.metadata.title"/>
-              <TextInput source="metadata.keywords" label="manifestation.management.metadata.keywords"/>
-              <TextInput source="metadata.description" label="manifestation.management.metadata.description"/>
+              <TextInput
+                source="metadata.title"
+                label="manifestation.management.metadata.title"
+              />
+              <TextInput
+                source="metadata.keywords"
+                label="manifestation.management.metadata.keywords"
+              />
+              <TextInput
+                source="metadata.description"
+                label="manifestation.management.metadata.description"
+              />
             </div>
           </AccordionDetails>
         </Accordion>
@@ -122,25 +144,64 @@ export const ManifestationManage = (props) => {
           <AccordionDetails>
             <div>
               <h4>Colores</h4>
-              <ColorInput source="styles.color.background" label="manifestation.management.styles.colors.background"/>
-              <ColorInput source="styles.color.accent" label="manifestation.management.styles.colors.accent" />
+              <ColorInput
+                source="styles.colors.background"
+                label="manifestation.management.styles.colors.background"
+              />
+              <ColorInput
+                source="styles.colors.accent"
+                label="manifestation.management.styles.colors.accent"
+              />
               <h4>Textos</h4>
               <h5>Titulos</h5>
-              <TextInput source="styles.title.font" label="manifestation.management.styles.title.font"/>
-              <ColorInput source="styles.title.color" label="manifestation.management.styles.title.color"/>
+              <TextInput
+                source="styles.text.title.font"
+                label="manifestation.management.styles.text.title.font"
+              />
+              <ColorInput
+                source="styles.text.title.color"
+                label="manifestation.management.styles.text.title.color"
+              />
               <h5>Subtitulos</h5>
-              <TextInput source="styles.subtitle.font" label="manifestation.management.styles.subtitle.font"/>
-              <ColorInput source="styles.subtitle.color" label="manifestation.management.styles.subtitle.color"/>
+              <TextInput
+                source="styles.text.subtitle.font"
+                label="manifestation.management.styles.text.subtitle.font"
+              />
+              <ColorInput
+                source="styles.text.subtitle.color"
+                label="manifestation.management.styles.text.subtitle.color"
+              />
               <h5>Body</h5>
-              <TextInput source="styles.body.font" label="manifestation.management.styles.body.font"/>
-              <ColorInput source="styles.body.color" label="manifestation.management.styles.body.color"/>
+              <TextInput
+                source="styles.text.body.font"
+                label="manifestation.management.styles.text.body.font"
+              />
+              <ColorInput
+                source="styles.text.body.color"
+                label="manifestation.management.styles.text.body.color"
+              />
               <h4>Thumbnails</h4>
-              <TextInput source="styles.thumbnails.columns" label="manifestation.management.styles.thumbnails.columns"/>
+              <NumberInput
+                step={1}
+                min={7}
+                max={10}
+                source="styles.thumbnails.columns"
+                label="manifestation.management.styles.thumbnails.columns"
+              />
               <h5>Colors</h5>
-              <TextInput source="styles.thumbnails.hover" label="manifestation.management.styles.thumbnails.hover"/>
-              <TextInput source="styles.thumbnails.border" label="manifestation.management.styles.thumbnails.border"/>
+              <ColorInput
+                source="styles.thumbnails.colors.hover"
+                label="manifestation.management.styles.thumbnails.colors.hover"
+              />
+              <ColorInput
+                source="styles.thumbnails.colors.border"
+                label="manifestation.management.styles.thumbnails.colors.border"
+              />
               <h4>Cards</h4>
-              <BooleanInput source="styles.cards.darkmode" label="manifestation.management.styles.cards.darkmode"/>
+              <BooleanInput
+                source="styles.cards.darkmode"
+                label="manifestation.management.styles.cards.darkmode"
+              />
             </div>
           </AccordionDetails>
         </Accordion>
