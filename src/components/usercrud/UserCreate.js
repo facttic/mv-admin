@@ -2,7 +2,6 @@ import * as React from "react";
 import { Create, SimpleForm, TextInput, BooleanInput, PasswordInput, required } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 const useStyles = makeStyles((theme) => ({
   createForm: {
     padding: theme.spacing(2),

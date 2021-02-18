@@ -28,7 +28,8 @@ const useStyles = makeStyles(() => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%",
@@ -41,9 +42,8 @@ const useStyles = makeStyles(() => ({
   submit: {
     marginTop: theme.spacing(4),
     backgroundColor: theme.palette.primary.main,
-    width: "120px",
     display: "flex",
-    borderRadius: "16px"
+    borderRadius: "8px"
   },
   title: {
     fontWeight: "bold"
@@ -105,6 +105,7 @@ export const LoginPage = ({ theme }) => {
         <Button
           type="submit"
           variant="contained"
+          size="medium"
           className={classes.submit}
           onClick={submit}
         >

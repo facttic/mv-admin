@@ -31,7 +31,8 @@ const useSidebarStyles = makeStyles({
       },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.secondary.main,
       },
 });
 

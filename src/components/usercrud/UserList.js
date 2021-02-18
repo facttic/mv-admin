@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
   headerCell: {
     backgroundColor: theme.palette.secondary.light,
-    fontWeight: "bold",
+    fontWeight: "bold"
+  },
+  main: {
+    paddingTop: theme.spacing(4)
   }
 }))
 
@@ -44,13 +47,11 @@ const ListActions = (props) => {
       <Typography variant="h6"> Usuarios </Typography>
       </div>
       <div>
-      <Link to={`${basePath}/create`} >
-        <Fab className={classes.fab} aria-label="add" size="small"
+      <Link to={`${basePath}/create`} className={classes.fabs} >
+        <Fab className={classes.fab} aria-label="add" size="medium"
           // onClick={() => { alert('Your custom action'); }}
-          label="+"
-        >
+          label="+">
           <AddIcon />
-
         </Fab>
       </Link>
       </div>
