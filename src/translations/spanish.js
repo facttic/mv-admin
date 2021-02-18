@@ -147,10 +147,10 @@ const spanish = {
   },
   user: {
     create: {
-      name: "nombre",
-      email: "email",
-      password: "contraseña",
-      confirm: "confirmación",
+      name: "Nombre",
+      email: "Mail",
+      password: "Contraseña",
+      confirm: "Confirmación",
     },
     edit: {
       name: "Nombre",
