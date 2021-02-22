@@ -18,7 +18,7 @@ const minLength = (min) => (value) => {
 };
 
 export const ManifestationEdit = (props) => {
-  let [Users, UsersSelected, listUsers, usersSelectedList] = useState("");
+  let [Users, UsersSelected, usersSelectedList] = useState("");
   UsersSelected = useGetList(
     "users",
     { page: 1, perPage: 999 },

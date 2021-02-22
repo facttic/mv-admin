@@ -1,8 +1,5 @@
 import * as React from "react";
 import {
-  List,
-  Datagrid,
-  TextField,
   useGetIdentity,
   Loading
 } from "react-admin";
