@@ -12,6 +12,26 @@ const httpClient = async (url, options = {}) => {
   return fetchUtils.fetchJson(url, options);
 };
 
+const buildFormData = (formData, data, parentKey) => {
+  if (
+    data &&
+    typeof data === "object" &&
+    !(data instanceof Date) &&
+    !(data instanceof File)
+  ) {
+    Object.keys(data).forEach((key) => {
+      buildFormData(
+        formData,
+        data[key],
+        parentKey ? `${parentKey}.${key}` : key
+      );
+    });
+  } else {
+    const value = data == null ? undefined : data;
+    formData.append(parentKey, value);
+  }
+};
+
 const dataProvider = {
   getList: async (resource, params) => {
     console.log("get List", resource, params);
@@ -23,7 +43,9 @@ const dataProvider = {
       perPage: perPage,
       page: page,
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(params.filter)}`;
+    const url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(
+      params.filter
+    )}`;
     const { json } = await httpClient(url);
     return {
       data: json.data,
@@ -32,13 +54,13 @@ const dataProvider = {
   },
 
   getOne: async (resource, params) => {
-    try{
-        console.log("get one", resource, params);
-        const url = `${apiUrl}/${resource}/${params.id}`;
-        const {json} = await httpClient(url);
-        return {data: json};
+    try {
+      console.log("get one", resource, params);
+      const url = `${apiUrl}/${resource}/${params.id}`;
+      const { json } = await httpClient(url);
+      return { data: json };
     } catch (e) {
-        throw new Error('Network error');
+      throw new Error("Network error");
     }
   },
 
@@ -65,7 +87,7 @@ const dataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
     console.log(url);
     const { json } = await httpClient(url);
-    console.log(json)
+    console.log(json);
     return {
       data: json.list,
       total: json.total,
@@ -74,11 +96,28 @@ const dataProvider = {
 
   update: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
+    const containsImage =
+      params.data.images.header ||
+      params.data.images.favicon ||
+      params.data.images.og.twitter ||
+      params.data.images.og.facebook;
+    if (resource !== "manifestations" || !containsImage || params.data.users_id) {
+      const { json } = await httpClient(url, {
+        method: "PUT",
+        body: JSON.stringify(params.data),
+      });
+      return { data: json };
+    }
+    function jsonToFormData(data) {
+      var formData = new FormData();
+      buildFormData(formData, params.data);
+      return formData;
+    }
     const { json } = await httpClient(url, {
       method: "PUT",
-      body: JSON.stringify(params.data),
-    })
-    return  {data: json} ; 
+      body: jsonToFormData(params.data),
+    });
+    return { data: json };
   },
 
   updateMany: async (resource, params) => {
@@ -95,20 +134,24 @@ const dataProvider = {
     return { data: json };
   },
 
-  create: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}`, {
-      method: "POST",
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({
-      data: { ...params.data, id: json.id },
-    })),
+  create: async (resource, params) => {
+    console.log("Create", resource);
+    const { json } = await httpClient(
+      `${apiUrl}/${resource}?${resource}`,
+      {
+        method: "POST",
+        body: JSON.stringify(params.data),
+      }
+    );
+    return { data: json };
+  },
 
   delete: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const { json } = await httpClient(url, {
       method: "DELETE",
-    })
-    return {data:json}
+    });
+    return { data: json };
   },
 
   deleteMany: async (resource, params) => {

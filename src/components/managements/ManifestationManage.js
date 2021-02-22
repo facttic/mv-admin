@@ -13,6 +13,7 @@ import {
   ImageInput,
   ImageField,
   NumberInput,
+  SelectInput,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const ManifestationManage = (props) => {
   const classes = useStyles();
-  console.log("man user props", props);
   return (
     <Edit undoable={false} title="Gestionando Marcha" {...props}>
       <SimpleForm toolbar={<UserEditToolbar />}>
@@ -77,35 +77,40 @@ export const ManifestationManage = (props) => {
             <TextInput
               source="name"
               label="manifestation.management.sponsors.name"
+              validate={[required()]}
             />
             <TextInput
               source="logoUri"
               label="manifestation.management.sponsors.logoUri"
+              validate={[required()]}
             />
             <TextInput
               source="pageUri"
               label="manifestation.management.sponsors.pageUri"
+              validate={[required()]}
             />
           </SimpleFormIterator>
         </ArrayInput>
-        {/*
-        <ReferenceManyField
-            reference={"manifestations/"+props.id+"/hashtags"}
-            target="id"
-            label="Hashtags"
-          >
-            <List title="Hashtags"
-              exporter={false}
-              bulkActionButtons={false}
-              {...props}>
-            <Datagrid>
-              <TextField source="name" />
-              <TextField source="source" />
-              <EditButton />
-            </Datagrid>
-            </List>
-          </ReferenceManyField>
-        */}
+        <ArrayInput
+          source="hashtags"
+          label="manifestation.management.hashtags.title"
+        >
+          <SimpleFormIterator>
+            <TextInput
+              source="name"
+              label="manifestation.management.hashtags.name"
+              validate={[required()]}
+            />
+            <SelectInput
+              source="source"
+              label="manifestation.management.hashtags.source"
+              choices={[
+                { id: "twitter", name: "twitter" },
+                { id: "instagram", name: "instagram" },
+              ]}
+            />
+          </SimpleFormIterator>
+        </ArrayInput>
         <Accordion>
           {/* Metadata */}
           <AccordionSummary
@@ -199,7 +204,7 @@ export const ManifestationManage = (props) => {
               />
               <h4>Cards</h4>
               <BooleanInput
-                source="styles.cards.darkmode"
+                source="styles.cards.darkMode"
                 label="manifestation.management.styles.cards.darkmode"
               />
             </div>
@@ -223,7 +228,7 @@ export const ManifestationManage = (props) => {
                 accept="image/*"
                 placeholder={<p>Drop your file here</p>}
               >
-                <ImageField source="src" title="title" />
+                <ImageField source="src" />
               </ImageInput>
               <ImageInput
                 source="images.favicon"
@@ -232,26 +237,26 @@ export const ManifestationManage = (props) => {
                 accept="image/*"
                 placeholder={<p>Drop your file here</p>}
               >
-                <ImageField source="src" title="title" />
+                <ImageField source="src" />
               </ImageInput>
               <h5>og</h5>
               <ImageInput
-                source="images.twitter"
-                label="manifestation.management.images.twitter"
+                source="images.og.twitter"
+                label="manifestation.management.images.og.twitter"
                 multiple={false}
                 accept="image/*"
                 placeholder={<p>Drop your file here</p>}
               >
-                <ImageField source="src" title="title" />
+                <ImageField source="src" />
               </ImageInput>
               <ImageInput
-                source="images.facebook"
-                label="manifestation.management.images.facebook"
+                source="images.og.facebook"
+                label="manifestation.management.images.og.facebook"
                 multiple={false}
                 accept="image/*"
                 placeholder={<p>Drop your file here</p>}
               >
-                <ImageField source="src" title="title" />
+                <ImageField source="src" />
               </ImageInput>
             </div>
           </AccordionDetails>

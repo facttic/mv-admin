@@ -181,6 +181,11 @@ const spanish = {
         logoUri: "LogoUri",
         pageUri: "PageUri",
       },
+      hashtags : {
+        title: "Hashtags",
+        name: "Hashtag",
+        source: "Source",
+      },
       metadata: {
         title: "Titulo",
         keywords: "Keywords",
@@ -219,8 +224,10 @@ const spanish = {
       images: {
         header: "Header",
         favicon: "Favicon",
-        twitter: "Twitter",
-        facebook: "Facebook",
+        og:{
+          twitter: "Twitter",
+          facebook: "Facebook",
+        }
       },
       startDate: "Fecha de inicio",
       endDate: "Fecha de cierre",

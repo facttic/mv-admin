@@ -21,7 +21,7 @@ export const ManifestationManageList = (props) => {
   if (identityLoading) {
     return <Loading></Loading>;
   }
-  if (!identity.manifestation_id) {
+  if (identity=== undefined || !identity.manifestation_id) {
     return (
       <Card>
         <Title title="Marcha no asignada" />
