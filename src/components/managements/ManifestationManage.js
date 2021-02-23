@@ -13,7 +13,7 @@ import {
   ImageInput,
   ImageField,
   SelectInput,
-  TextField
+  TextField,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -28,9 +28,9 @@ const minLength = (min) => (value) => {
   }
 };
 
-const UserEditToolbar = (props) => (
+const UserEditToolbar = ({ invalid, ...props }) => (
   <Toolbar {...props}>
-    <SaveButton {...props} />
+    <SaveButton redirect={false} submitOnEnter={false} disabled={invalid} />
   </Toolbar>
 );
 
@@ -48,7 +48,16 @@ export const ManifestationManage = (props) => {
   const classes = useStyles();
   console.log(props);
   return (
-    <Edit undoable={false} title= {<TextField class="MuiTypography-root makeStyles-title-5 MuiTypography-h6 MuiTypography-colorInherit" source="title"/>} {...props}>
+    <Edit
+      undoable={false}
+      title={
+        <TextField
+          class="MuiTypography-root makeStyles-title-5 MuiTypography-h6 MuiTypography-colorInherit"
+          source="title"
+        />
+      }
+      {...props}
+    >
       <SimpleForm toolbar={<UserEditToolbar />}>
         <div className={classes.root}>
           {/*Header / Footer / Fechas */}
@@ -255,16 +264,16 @@ export const ManifestationManage = (props) => {
                 />
                 <h4>Thumbnails</h4>
                 <SelectInput
-                    source="styles.thumbnails.columns"
-                    label="manifestation.management.styles.thumbnails.columns"
-                    choices={[
-                      { id: 7, name: 7 },
-                      { id: 8, name: 8 },
-                      { id: 9, name: 9 },
-                      { id: 10, name: 10 },
-                    ]}                    
-                    className={classes.root}                    
-                  />
+                  source="styles.thumbnails.columns"
+                  label="manifestation.management.styles.thumbnails.columns"
+                  choices={[
+                    { id: 7, name: 7 },
+                    { id: 8, name: 8 },
+                    { id: 9, name: 9 },
+                    { id: 10, name: 10 },
+                  ]}
+                  className={classes.root}
+                />
                 <h5>Colors</h5>
                 <ColorInput
                   source="styles.thumbnails.colors.hover"
