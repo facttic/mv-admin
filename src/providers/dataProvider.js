@@ -32,6 +32,13 @@ const buildFormData = (formData, data, parentKey) => {
   }
 };
 
+const checkIfimageIsDeleted = (imageParams) => {
+  if(imageParams.header === null){imageParams.header = {src:""}};
+  if(imageParams.favicon === null){imageParams.favicon = {src:""}};
+  if(imageParams.og.twitter === null){imageParams.og.twitter = {src:""}};
+  if(imageParams.og.facebook === null){imageParams.og.facebook = {src:""}};
+};
+
 const dataProvider = {
   getList: async (resource, params) => {
     console.log("get List", resource, params);
@@ -96,11 +103,12 @@ const dataProvider = {
 
   update: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
+    checkIfimageIsDeleted(params.data.images);
     const containsImage =
-      params.data.images.header ||
-      params.data.images.favicon ||
-      params.data.images.og.twitter ||
-      params.data.images.og.facebook;
+      params.data.images.header.rawFile ||
+      params.data.images.favicon.rawFile ||
+      params.data.images.og.twitter.rawFile ||
+      params.data.images.og.facebook.rawFile;
     if (resource !== "manifestations" || !containsImage || params.data.users_id) {
       const { json } = await httpClient(url, {
         method: "PUT",
