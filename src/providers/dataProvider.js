@@ -102,30 +102,38 @@ const dataProvider = {
   },
 
   update: async (resource, params) => {
-    const url = `${apiUrl}/${resource}/${params.id}`;
-    checkIfimageIsDeleted(params.data.images);
-    const containsImage =
-      params.data.images.header.rawFile ||
-      params.data.images.favicon.rawFile ||
-      params.data.images.og.twitter.rawFile ||
-      params.data.images.og.facebook.rawFile;
-    if (resource !== "manifestations" || !containsImage || params.data.users_id) {
+    try {
+      const url = `${apiUrl}/${resource}/${params.id}`;
+      checkIfimageIsDeleted(params.data.images);
+      const containsImage =
+        params.data.images.header.rawFile ||
+        params.data.images.favicon.rawFile ||
+        params.data.images.og.twitter.rawFile ||
+        params.data.images.og.facebook.rawFile;
+      if (
+        resource !== "manifestations" ||
+        !containsImage ||
+        params.data.users_id
+      ) {
+        const { json } = await httpClient(url, {
+          method: "PUT",
+          body: JSON.stringify(params.data),
+        });
+        return { data: json };
+      }
+      function jsonToFormData(data) {
+        var formData = new FormData();
+        buildFormData(formData, params.data);
+        return formData;
+      }
       const { json } = await httpClient(url, {
         method: "PUT",
-        body: JSON.stringify(params.data),
+        body: jsonToFormData(params.data),
       });
       return { data: json };
+    } catch (e) {
+      throw new Error(e.message);
     }
-    function jsonToFormData(data) {
-      var formData = new FormData();
-      buildFormData(formData, params.data);
-      return formData;
-    }
-    const { json } = await httpClient(url, {
-      method: "PUT",
-      body: jsonToFormData(params.data),
-    });
-    return { data: json };
   },
 
   updateMany: async (resource, params) => {
@@ -144,13 +152,10 @@ const dataProvider = {
 
   create: async (resource, params) => {
     console.log("Create", resource);
-    const { json } = await httpClient(
-      `${apiUrl}/${resource}?${resource}`,
-      {
-        method: "POST",
-        body: JSON.stringify(params.data),
-      }
-    );
+    const { json } = await httpClient(`${apiUrl}/${resource}?${resource}`, {
+      method: "POST",
+      body: JSON.stringify(params.data),
+    });
     return { data: json };
   },
 

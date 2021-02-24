@@ -14,6 +14,9 @@ import {
   ImageField,
   SelectInput,
   TextField,
+  useNotify,
+  useRefresh,
+  useRedirect,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -46,14 +49,24 @@ const useStyles = makeStyles((theme) => ({
 
 export const ManifestationManage = (props) => {
   const classes = useStyles();
-  console.log(props);
+  const notify = useNotify();
+  const refresh = useRefresh();
+  const redirect = useRedirect();
+
+  const onFailure = (error) => {
+      notify(`${error.message}`)
+      redirect('/manifestations');
+      refresh();
+  };
+
   return (
     <Edit
+      onFailure={onFailure}
       undoable={false}
       title={
         <TextField
           class="MuiTypography-root makeStyles-title-5 MuiTypography-h6 MuiTypography-colorInherit"
-          source="title"
+          source="name"
         />
       }
       {...props}
