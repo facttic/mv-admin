@@ -11,6 +11,8 @@ import { SULayout } from "./components/layout/SULayout";
 import { ManifestationList } from "./components/manifestationcrud/ManifestationList";
 import { ManifestationCreate } from "./components/manifestationcrud/ManifestationCreate";
 import { ManifestationEdit } from "./components/manifestationcrud/ManifestationEdit";
+import { ManifestationManage } from "./components/managements/ManifestationManage";
+import { ManifestationManageList } from "./components/managements/ManifestationManageList";
 import authProvider from "./providers/authProvider";
 import dataProvider from "./providers/dataProvider";
 import localeProvider from "./providers/localeProvider";
@@ -24,23 +26,37 @@ const App = () => (
     loginPage={LoginPage}
     layout={(props) => <SULayout {...props} theme={theme} />}
   >
-    <Resource
-      name="users"
-      options={{ label: "Usuarios" }}
-      list={UserList}
-      create={UserCreate}
-      edit={UserEdit}
-      icon={UserIcon}
-    />
-
-    <Resource
-      name="manifestations"
-      options={{ label: "Marchas" }}
-      list={ManifestationList}
-      create={ManifestationCreate}
-      edit={ManifestationEdit}
-      icon={GroupWorkIcon}
-    />
+    {(permissions) => [
+      permissions === "admin" ? (
+        <Resource
+          name="users"
+          options={{ label: "Usuarios" }}
+          list={UserList}
+          create={UserCreate}
+          edit={UserEdit}
+          icon={UserIcon}
+        />
+      ) : null,
+      permissions === "admin" ? (
+        <Resource
+          name="manifestations"
+          options={{ label: "Marchas" }}
+          list={ManifestationList}
+          create={ManifestationCreate}
+          edit={ManifestationEdit}
+          icon={GroupWorkIcon}
+        />
+      ) : null,
+      permissions === "user" ? (
+        <Resource
+          name="manifestations"
+          options={{ label: "Marcha" }}
+          list={ManifestationManageList}
+          edit={ManifestationManage}
+          icon={GroupWorkIcon}
+        />
+      ) : null
+    ]}
   </Admin>
 );
 

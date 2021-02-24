@@ -157,20 +157,82 @@ const spanish = {
       email: "E-mail",
       manifestation: "Marcha",
     },
-    list:{
+    list: {
       name: "Nombre",
       email: "E-mail",
       manifestation: "Marcha",
-    }
+    },
   },
-  manifestation:{
+  manifestation: {
     create: {
       name: "Nombre",
       uri: "URI",
       user: "Usuario",
       title: "Creando Manifestación",
-    }
-  }
+    },
+    management: {
+      title: "Titulo",
+      subtitle: "Subtitulo",
+      description: "Descripción",
+      footer: "Footer",
+      sponsors: {
+        title: "Sponsors",
+        name: "Nombre",
+        logoUri: "LogoUri",
+        pageUri: "PageUri",
+      },
+      hashtags : {
+        title: "Hashtags",
+        name: "Hashtag",
+        source: "Source",
+      },
+      metadata: {
+        title: "Titulo",
+        keywords: "Keywords",
+        description: "Descripción",
+      },
+      styles: {
+        colors: {
+          background: "Background",
+          accent: "Accent",
+        },
+        text: {
+          title: {
+            font: "Fuente",
+            color: "Color",
+          },
+          subtitle: {
+            font: "Fuente",
+            color: "Color",
+          },
+          body: {
+            font: "Fuente",
+            color: "Color",
+          },
+        },
+        thumbnails: {
+          columns: "Columnas",
+          colors: {
+            hover: "Hover",
+            border: "Border",
+          },
+        },
+        cards: {
+          darkmode: "Darkmode",
+        },
+      },
+      images: {
+        header: "Header",
+        favicon: "Favicon",
+        og:{
+          twitter: "Twitter",
+          facebook: "Facebook",
+        }
+      },
+      startDate: "Fecha de inicio",
+      endDate: "Fecha de cierre",
+    },
+  },
 };
 
 export default spanish;
