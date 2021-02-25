@@ -1,22 +1,7 @@
 import * as React from "react";
 import { Create, SimpleForm, TextInput, BooleanInput, PasswordInput, required } from "react-admin";
-import { makeStyles } from "@material-ui/core/styles";
+import { FormStyles } from "../FormStyles"
 
-const useStyles = makeStyles((theme) => ({
-  createForm: {
-    padding: theme.spacing(2),
-    margin: theme.spacing(0, 2)
-  },
-  createBox: {
-    display:"flex", 
-    justifyContent:"center"
-  },
-  root: {
-    margin: theme.spacing(4, 6, 6, 6),
-    width: "70%",
-    minWidth: "200px"
-  }
-}))
 
 const matchPassword = (value, allValues) => {
   if (value !== allValues.password) {
@@ -38,7 +23,7 @@ const minLength = (min) => (value) => {
 };
 
 export const UserCreate = (props) => {
-  const classes = useStyles();
+  const classes = FormStyles();
 
 return ( 
   <div className={classes.createBox}>
