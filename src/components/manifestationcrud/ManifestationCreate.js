@@ -44,7 +44,7 @@ export const ManifestationCreate = (props) => {
           label="manifestation.create.uri"
           validate={[required()]}
         />
-        <SelectArrayInput source="user" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
+        <SelectArrayInput source="user" label="manifestation.create.users_id" optionText="name" choices={arrayData} validate={[required()]}/>
       </SimpleForm>
     </Create>
   );
