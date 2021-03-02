@@ -57,7 +57,7 @@ export const ManifestationEdit = (props) => {
           validate={[required()]}
         />
         <ReferenceArrayInput
-          source="users_id"
+          source="userIds"
           reference="users"
           filter={{ superadmin: false }}
         >
