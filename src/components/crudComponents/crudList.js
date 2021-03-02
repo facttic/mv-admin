@@ -23,13 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CrudList = (props) => {
     const classes = useStyles();
-    const {
-        className,
-        exporter,
-        filters,
-        maxResults,
-        ...rest
-      } = props;
 
     return (
         <List className={classes.list} classes={classes} undoable={false} actions={props.actions} title={props.title} exporter={false} bulkActionButtons={false} {...props}>
