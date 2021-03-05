@@ -25,6 +25,8 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { ColorInput } from "react-admin-color-input";
+
+
 const minLength = (min) => (value) => {
   if (value && value.length < min) {
     return "Debe tener mas de " + min + " caracteres";
@@ -38,12 +40,16 @@ const UserEditToolbar = ({ invalid, ...props }) => (
 );
 
 const useStyles = makeStyles((theme) => ({
+  container:{
+    padding: theme.spacing(2),
+    margin: theme.spacing(0, 6)
+  },
   root: {
     width: "100%",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(18),
+    fontWeight: theme.typography.fontWeightBold,
   },
 }));
 
@@ -61,6 +67,7 @@ export const ManifestationManage = (props) => {
 
   return (
     <Edit
+      className={classes.container} 
       onFailure={onFailure}
       undoable={false}
       title={
@@ -85,7 +92,7 @@ export const ManifestationManage = (props) => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div>
+              <div className={classes.root}>
                 <TextInput
                   source="title"
                   label="manifestation.management.title"
@@ -206,21 +213,21 @@ export const ManifestationManage = (props) => {
               <Typography className={classes.heading}>Metadata</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div>
+              <div className={classes.root}>
                 <TextInput
                   source="metadata.title"
                   label="manifestation.management.metadata.title"
-                  className={classes.root}
+                  fullWidth={true}
                 />
                 <TextInput
                   source="metadata.keywords"
                   label="manifestation.management.metadata.keywords"
-                  className={classes.root}
+                  fullWidth={true}
                 />
                 <TextInput
                   source="metadata.description"
                   label="manifestation.management.metadata.description"
-                  className={classes.root}
+                  fullWidth={true}
                 />
               </div>
             </AccordionDetails>
@@ -235,7 +242,7 @@ export const ManifestationManage = (props) => {
               <Typography className={classes.heading}>Estilos</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div>
+              <div >
                 <h4>Colores</h4>
                 <ColorInput
                   source="styles.colors.background"
