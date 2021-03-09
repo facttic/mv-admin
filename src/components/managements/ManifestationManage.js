@@ -19,6 +19,7 @@ import {
   useRedirect,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from 'clsx';
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -40,7 +41,7 @@ const UserEditToolbar = ({ invalid, ...props }) => (
 );
 
 const useStyles = makeStyles((theme) => ({
-  container:{
+  container: {
     padding: theme.spacing(2),
     margin: theme.spacing(0, 6)
   },
@@ -51,6 +52,33 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(18),
     fontWeight: theme.typography.fontWeightBold,
   },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+  icon: {
+    verticalAlign: 'bottom',
+    height: 20,
+    width: 20,
+  },
+  details: {
+    alignItems: 'center',
+  },
+  column: {
+    flexBasis: '33.33%',
+    flexWrap: 'wrap'
+  },
+  helper: {
+    borderLeft: `2px solid ${theme.palette.divider}`,
+    padding: theme.spacing(1, 2),
+  },
+  link: {
+    color: theme.palette.primary.main,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 }));
 
 export const ManifestationManage = (props) => {
@@ -60,20 +88,22 @@ export const ManifestationManage = (props) => {
   const redirect = useRedirect();
 
   const onFailure = (error) => {
-      notify(`${error.message}`)
-      redirect('/manifestations');
-      refresh();
+    notify(`${error.message}`)
+    redirect('/manifestations');
+    refresh();
   };
 
   return (
     <Edit
-      className={classes.container} 
+      className={classes.container}
       onFailure={onFailure}
       undoable={false}
       title={
         <TextField
           class="MuiTypography-root makeStyles-title-5 MuiTypography-h6 MuiTypography-colorInherit"
           source="name"
+          variant="standard"
+
         />
       }
       {...props}
@@ -88,7 +118,7 @@ export const ManifestationManage = (props) => {
               id="panel1a-header"
             >
               <Typography className={classes.heading}>
-                Header / Footer / Fechas
+                Titulo y bajada / Footer / Fechas
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -98,34 +128,41 @@ export const ManifestationManage = (props) => {
                   label="manifestation.management.title"
                   validate={[required(), minLength(3)]}
                   fullWidth={true}
+                  variant="standard"
                 />
                 <TextInput
                   source="subtitle"
                   label="manifestation.management.subtitle"
                   validate={[required(), minLength(3)]}
                   fullWidth={true}
+                  variant="standard"
                 />
                 <TextInput
                   source="description"
                   label="manifestation.management.description"
                   validate={[required(), minLength(3)]}
                   fullWidth={true}
+                  variant="standard"
+
                 />
                 <TextInput
                   source="footer"
                   label="manifestation.management.footer"
                   validate={[required(), minLength(3)]}
                   fullWidth={true}
+                  variant="standard"
                 />
                 <DateInput
                   source="startDate"
                   label="manifestation.management.startDate"
                   validate={[required()]}
+                  variant="standard"
                 />
                 <DateInput
                   source="endDate"
                   label="manifestation.management.endDate"
                   validate={[required(), minLength(3)]}
+                  variant="standard"
                 />
               </div>
             </AccordionDetails>
@@ -203,6 +240,99 @@ export const ManifestationManage = (props) => {
               </ArrayInput>
             </AccordionDetails>
           </Accordion>
+          {/* Diseño */}
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>Diseño</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className={clsx(classes.column, classes.helper)} >
+                <h4>Colores</h4>
+                <ColorInput
+                  source="styles.colors.background"
+                  label="manifestation.management.styles.colors.background"
+                />
+                <ColorInput
+                  source="styles.colors.accent"
+                  label="manifestation.management.styles.colors.accent"
+                />
+                <TextInput
+                  source="styles.text.title.font"
+                  label="manifestation.management.styles.text.title.font"
+                  className={classes.root}
+                  variant="standard"
+                />
+                <ColorInput
+                  source="styles.text.title.color"
+                  label="manifestation.management.styles.text.title.color"
+                />
+              </div>
+              <div className={clsx(classes.column, classes.helper)} >
+                <h4>Subtitulos</h4>
+                <TextInput
+                  source="styles.text.subtitle.font"
+                  label="manifestation.management.styles.text.subtitle.font"
+                  className={classes.root}
+                  variant="standard"
+                />
+                <ColorInput
+                  source="styles.text.subtitle.color"
+                  label="manifestation.management.styles.text.subtitle.color"
+                />
+              </div>
+              <div className={clsx(classes.column, classes.helper)}>
+                <h4>Body</h4>
+                <TextInput
+                  source="styles.text.body.font"
+                  label="manifestation.management.styles.text.body.font"
+                  className={classes.root}
+                  variant="standard"
+                />
+                <ColorInput
+                  source="styles.text.body.color"
+                  label="manifestation.management.styles.text.body.color"
+                  className={classes.root}
+                />
+              </div>
+              <div className={clsx(classes.column, classes.helper)}>
+                <h4>Miniaturas</h4>
+                <SelectInput
+                  source="styles.thumbnails.columns"
+                  label="manifestation.management.styles.thumbnails.columns"
+                  choices={[
+                    { id: 7, name: 7 },
+                    { id: 8, name: 8 },
+                    { id: 9, name: 9 },
+                    { id: 10, name: 10 },
+                  ]}
+                  className={classes.root}
+                  variant="standard"
+                />
+                <h5>Colores</h5>
+                <ColorInput
+                  source="styles.thumbnails.colors.hover"
+                  label="manifestation.management.styles.thumbnails.colors.hover"
+                  className={classes.root}
+                />
+                <ColorInput
+                  source="styles.thumbnails.colors.border"
+                  label="manifestation.management.styles.thumbnails.colors.border"
+                  className={classes.root}
+                />
+              </div>
+              <div className={clsx(classes.column, classes.helper)}>
+                <h4>Cards</h4>
+                <BooleanInput
+                  source="styles.cards.darkMode"
+                  label="manifestation.management.styles.cards.darkmode"
+                />
+              </div>
+            </AccordionDetails>
+          </Accordion>
           {/* Metadata */}
           <Accordion>
             <AccordionSummary
@@ -218,97 +348,19 @@ export const ManifestationManage = (props) => {
                   source="metadata.title"
                   label="manifestation.management.metadata.title"
                   fullWidth={true}
+                  variant="standard"
                 />
                 <TextInput
                   source="metadata.keywords"
                   label="manifestation.management.metadata.keywords"
                   fullWidth={true}
+                  variant="standard"
                 />
                 <TextInput
                   source="metadata.description"
                   label="manifestation.management.metadata.description"
                   fullWidth={true}
-                />
-              </div>
-            </AccordionDetails>
-          </Accordion>
-          {/* Estilos */}
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>Estilos</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div >
-                <h4>Colores</h4>
-                <ColorInput
-                  source="styles.colors.background"
-                  label="manifestation.management.styles.colors.background"
-                />
-                <ColorInput
-                  source="styles.colors.accent"
-                  label="manifestation.management.styles.colors.accent"
-                />
-                <TextInput
-                  source="styles.text.title.font"
-                  label="manifestation.management.styles.text.title.font"
-                  className={classes.root}
-                />
-                <ColorInput
-                  source="styles.text.title.color"
-                  label="manifestation.management.styles.text.title.color"
-                />
-                <h5>Subtitulos</h5>
-                <TextInput
-                  source="styles.text.subtitle.font"
-                  label="manifestation.management.styles.text.subtitle.font"
-                  className={classes.root}
-                />
-                <ColorInput
-                  source="styles.text.subtitle.color"
-                  label="manifestation.management.styles.text.subtitle.color"
-                />
-                <h5>Body</h5>
-                <TextInput
-                  source="styles.text.body.font"
-                  label="manifestation.management.styles.text.body.font"
-                  className={classes.root}
-                />
-                <ColorInput
-                  source="styles.text.body.color"
-                  label="manifestation.management.styles.text.body.color"
-                  className={classes.root}
-                />
-                <h4>Thumbnails</h4>
-                <SelectInput
-                  source="styles.thumbnails.columns"
-                  label="manifestation.management.styles.thumbnails.columns"
-                  choices={[
-                    { id: 7, name: 7 },
-                    { id: 8, name: 8 },
-                    { id: 9, name: 9 },
-                    { id: 10, name: 10 },
-                  ]}
-                  className={classes.root}
-                />
-                <h5>Colors</h5>
-                <ColorInput
-                  source="styles.thumbnails.colors.hover"
-                  label="manifestation.management.styles.thumbnails.colors.hover"
-                  className={classes.root}
-                />
-                <ColorInput
-                  source="styles.thumbnails.colors.border"
-                  label="manifestation.management.styles.thumbnails.colors.border"
-                  className={classes.root}
-                />
-                <h4>Cards</h4>
-                <BooleanInput
-                  source="styles.cards.darkMode"
-                  label="manifestation.management.styles.cards.darkmode"
+                  variant="standard"
                 />
               </div>
             </AccordionDetails>
