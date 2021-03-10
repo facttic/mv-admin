@@ -23,7 +23,7 @@ const buildFormData = (formData, data, parentKey) => {
       buildFormData(
         formData,
         data[key],
-        parentKey ? `${parentKey}.${key}` : key
+        parentKey ? `${parentKey}[${key}]` : key
       );
     });
   } else {
@@ -33,6 +33,7 @@ const buildFormData = (formData, data, parentKey) => {
 };
 
 const checkIfimageIsDeleted = (imageParams) => {
+  if(!imageParams){return}
   if(imageParams.header === null){imageParams.header = {src:""}};
   if(imageParams.favicon === null){imageParams.favicon = {src:""}};
   if(imageParams.og.twitter === null){imageParams.og.twitter = {src:""}};
@@ -106,10 +107,11 @@ const dataProvider = {
       const url = `${apiUrl}/${resource}/${params.id}`;
       checkIfimageIsDeleted(params.data.images);
       const containsImage =
+        params.data.images && (
         params.data.images.header.rawFile ||
         params.data.images.favicon.rawFile ||
         params.data.images.og.twitter.rawFile ||
-        params.data.images.og.facebook.rawFile;
+        params.data.images.og.facebook.rawFile);
       if (
         resource !== "manifestations" ||
         !containsImage ||

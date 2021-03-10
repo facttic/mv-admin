@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { useLogin, useNotify, Notification } from "react-admin";
+import { useLogin, useNotify, Notification, useTranslate } from "react-admin";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -52,13 +52,14 @@ const useStyles = makeStyles(() => ({
 
 export const LoginPage = ({ theme }) => {
   const classes = useStyles();
+  const translate = useTranslate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = useLogin();
   const notify = useNotify();
   const submit = (e) => {
     e.preventDefault();
-    login({ email, password }).catch(() => notify("Invalid email or password"));
+    login({ email, password }).catch(() => notify(translate("login.authError")));
   };
 
   return (

@@ -145,6 +145,9 @@ const spanish = {
       required: "Requerido",
     },
   },
+  login:{
+    authError: "Email o contraseña incorrectos"
+  },
   user: {
     create: {
       name: "Nombre",

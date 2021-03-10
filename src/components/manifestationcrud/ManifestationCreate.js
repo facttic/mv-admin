@@ -16,7 +16,12 @@ const minLength = (min) => (value) => {
   }
 };
 
-
+const validateUri = (value) => {
+  let reg = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i;
+  if (reg.test(value) === false) {
+    return "La uri no debe tener protocolo ni / al final, ejemplo 'sub.dominio.com'";
+  }
+}
 
 export const ManifestationCreate = (props) => {
   const classes = FormStyles();
@@ -37,24 +42,20 @@ export const ManifestationCreate = (props) => {
     return <p>ERROR</p>;
   }
   return (
-    <div className={classes.createBox}>
-      <Create title="manifestation.create.title" {...props} classes={classes}>
-        <SimpleForm className={classes.createForm}>
-          <TextInput
-            fullWidth 
-            source="name"
-            label="manifestation.create.name"
-            validate={[required(), minLength(3)]}
-          />
-          <TextInput
-            fullWidth 
-            source="uri"
-            label="manifestation.create.uri"
-            validate={[required()]}
-          />
-          <SelectArrayInput fullWidth  source="user" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
-        </SimpleForm>
-      </Create>
-    </div>
+    <Create title="manifestation.create.title" {...props}>
+      <SimpleForm>
+        <TextInput
+          source="name"
+          label="manifestation.create.name"
+          validate={[required(), minLength(3)]}
+        />
+        <TextInput
+          source="uri"
+          label="manifestation.create.uri"
+          validate={[required(), validateUri]}
+        />
+        <SelectArrayInput source="userIds" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
+      </SimpleForm>
+    </Create>
   );
 };
