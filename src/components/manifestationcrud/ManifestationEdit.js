@@ -17,6 +17,13 @@ const minLength = (min) => (value) => {
   }
 };
 
+const validateUri = (value) => {
+  let reg = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i;
+  if (reg.test(value) === false) {
+    return "La uri no debe tener protocolo ni / al final, ejemplo 'sub.dominio.com'";
+  }
+}
+
 export const ManifestationEdit = (props) => {
   let [Users, UsersSelected, usersSelectedList] = useState("");
   UsersSelected = useGetList(
@@ -54,7 +61,7 @@ export const ManifestationEdit = (props) => {
         <TextInput
           source="uri"
           label="manifestation.create.uri"
-          validate={[required()]}
+          validate={[required(), validateUri]}
         />
         <ReferenceArrayInput
           source="userIds"
