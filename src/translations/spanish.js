@@ -253,7 +253,11 @@ const spanish = {
             username: "Usuario",
             password: "Contraseña",
           }
-         } 
+         },
+         mediaCleaner:{
+          active: "Activo",
+          scheduleSchema: "ScheduleSchema"
+        }
       },
       startDate: "Fecha de inicio",
       endDate: "Fecha de cierre",
