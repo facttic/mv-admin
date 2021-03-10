@@ -19,7 +19,8 @@ import {
   useRedirect,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from 'clsx';
+import Button from "@material-ui/core/Button";
+import AddIcon from '@material-ui/icons/Add';
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -63,14 +64,12 @@ const useStyles = makeStyles((theme) => ({
   },
   details: {
     alignItems: 'center',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr',
+    columnGap: '16px'
   },
   column: {
     flexBasis: '33.33%',
-    flexWrap: 'wrap'
-  },
-  helper: {
-    borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: theme.spacing(1, 2),
   },
   link: {
     color: theme.palette.primary.main,
@@ -79,7 +78,27 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'underline',
     },
   },
+  align: {
+    margin: '19px 0 8px',
+    '& p': {
+      display: 'none'
+    }
+  }
 }));
+
+const CustomAddButton = (props) => {
+  return <Button
+    type="submit"
+    variant="contained"
+    size="small"
+    startIcon={<AddIcon />}
+    color="primary"
+    {...props}
+  >
+    Añadir
+</Button>
+
+}
 
 export const ManifestationManage = (props) => {
   const classes = useStyles();
@@ -182,7 +201,7 @@ export const ManifestationManage = (props) => {
                 source="sponsors"
                 label="manifestation.management.sponsors.title"
               >
-                <SimpleFormIterator>
+                <SimpleFormIterator addButton={<CustomAddButton />}>
                   <TextInput
                     source="name"
                     label="manifestation.management.sponsors.name"
@@ -219,7 +238,7 @@ export const ManifestationManage = (props) => {
                 source="hashtags"
                 label="manifestation.management.hashtags.title"
               >
-                <SimpleFormIterator>
+                <SimpleFormIterator addButton={<CustomAddButton />}>
                   <TextInput
                     source="name"
                     label="manifestation.management.hashtags.name"
@@ -250,86 +269,84 @@ export const ManifestationManage = (props) => {
               <Typography className={classes.heading}>Diseño</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div className={clsx(classes.column, classes.helper)} >
+              <div>
                 <h4>Colores</h4>
-                <ColorInput
-                  source="styles.colors.background"
-                  label="manifestation.management.styles.colors.background"
-                />
-                <ColorInput
-                  source="styles.colors.accent"
-                  label="manifestation.management.styles.colors.accent"
-                />
-                <TextInput
-                  source="styles.text.title.font"
-                  label="manifestation.management.styles.text.title.font"
-                  className={classes.root}
-                  variant="standard"
-                />
-                <ColorInput
-                  source="styles.text.title.color"
-                  label="manifestation.management.styles.text.title.color"
-                />
-              </div>
-              <div className={clsx(classes.column, classes.helper)} >
+                <div className={classes.details}>
+                  <ColorInput
+                    source="styles.colors.background"
+                    label="manifestation.management.styles.colors.background"
+                  />
+                  <ColorInput
+                    source="styles.colors.accent"
+                    label="manifestation.management.styles.colors.accent"
+                  />
+                  <TextInput
+                    className={classes.align}
+                    source="styles.text.title.font"
+                    label="manifestation.management.styles.text.title.font"
+                    variant="standard"
+                  />
+                  <ColorInput
+                    source="styles.text.title.color"
+                    label="manifestation.management.styles.text.title.color"
+                  />
+                </div>
                 <h4>Subtitulos</h4>
-                <TextInput
-                  source="styles.text.subtitle.font"
-                  label="manifestation.management.styles.text.subtitle.font"
-                  className={classes.root}
-                  variant="standard"
-                />
-                <ColorInput
-                  source="styles.text.subtitle.color"
-                  label="manifestation.management.styles.text.subtitle.color"
-                />
-              </div>
-              <div className={clsx(classes.column, classes.helper)}>
+                <div className={classes.details}>
+                  <TextInput
+                    className={classes.align}
+                    source="styles.text.subtitle.font"
+                    label="manifestation.management.styles.text.subtitle.font"
+                    variant="standard"
+                  />
+                  <ColorInput
+                    source="styles.text.subtitle.color"
+                    label="manifestation.management.styles.text.subtitle.color"
+                  />
+                </div>
                 <h4>Body</h4>
-                <TextInput
-                  source="styles.text.body.font"
-                  label="manifestation.management.styles.text.body.font"
-                  className={classes.root}
-                  variant="standard"
-                />
-                <ColorInput
-                  source="styles.text.body.color"
-                  label="manifestation.management.styles.text.body.color"
-                  className={classes.root}
-                />
-              </div>
-              <div className={clsx(classes.column, classes.helper)}>
+                <div className={classes.details}>
+                  <TextInput
+                    className={classes.align}
+                    source="styles.text.body.font"
+                    label="manifestation.management.styles.text.body.font"
+                    variant="standard"
+                  />
+                  <ColorInput
+                    source="styles.text.body.color"
+                    label="manifestation.management.styles.text.body.color"
+                  />
+                </div>
                 <h4>Miniaturas</h4>
-                <SelectInput
-                  source="styles.thumbnails.columns"
-                  label="manifestation.management.styles.thumbnails.columns"
-                  choices={[
-                    { id: 7, name: 7 },
-                    { id: 8, name: 8 },
-                    { id: 9, name: 9 },
-                    { id: 10, name: 10 },
-                  ]}
-                  className={classes.root}
-                  variant="standard"
-                />
-                <h5>Colores</h5>
-                <ColorInput
-                  source="styles.thumbnails.colors.hover"
-                  label="manifestation.management.styles.thumbnails.colors.hover"
-                  className={classes.root}
-                />
-                <ColorInput
-                  source="styles.thumbnails.colors.border"
-                  label="manifestation.management.styles.thumbnails.colors.border"
-                  className={classes.root}
-                />
-              </div>
-              <div className={clsx(classes.column, classes.helper)}>
+                <div className={classes.details}>
+                  <SelectInput
+                    className={classes.align}
+                    source="styles.thumbnails.columns"
+                    label="manifestation.management.styles.thumbnails.columns"
+                    choices={[
+                      { id: 7, name: 7 },
+                      { id: 8, name: 8 },
+                      { id: 9, name: 9 },
+                      { id: 10, name: 10 },
+                    ]}
+                    variant="standard"
+                  />
+                  <ColorInput
+                    source="styles.thumbnails.colors.hover"
+                    label="manifestation.management.styles.thumbnails.colors.hover"
+                  />
+                  <ColorInput
+                    source="styles.thumbnails.colors.border"
+                    label="manifestation.management.styles.thumbnails.colors.border"
+                  />
+                </div>
                 <h4>Cards</h4>
-                <BooleanInput
-                  source="styles.cards.darkMode"
-                  label="manifestation.management.styles.cards.darkmode"
-                />
+                <div className={classes.details}>
+                  <BooleanInput
+                    source="styles.cards.darkMode"
+                    label="manifestation.management.styles.cards.darkmode"
+                  />
+                </div>
               </div>
             </AccordionDetails>
           </Accordion>

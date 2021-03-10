@@ -178,8 +178,8 @@ const spanish = {
       sponsors: {
         title: "Sponsors",
         name: "Nombre",
-        logoUri: "LogoUri",
-        pageUri: "PageUri",
+        logoUri: "Logo",
+        pageUri: "Page",
       },
       hashtags : {
         title: "Hashtags",
@@ -193,7 +193,7 @@ const spanish = {
       },
       styles: {
         colors: {
-          background: "Background",
+          background: "Fondo",
           accent: "Accent",
         },
         text: {
@@ -213,8 +213,8 @@ const spanish = {
         thumbnails: {
           columns: "Columnas",
           colors: {
-            hover: "Hover",
-            border: "Border",
+            hover: "Color hover",
+            border: "Color border",
           },
         },
         cards: {
