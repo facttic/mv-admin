@@ -17,17 +17,17 @@ import {
   useNotify,
   useRefresh,
   useRedirect,
+  NumberInput,
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { ColorInput } from "react-admin-color-input";
-
 
 const minLength = (min) => (value) => {
   if (value && value.length < min) {
@@ -44,7 +44,7 @@ const UserEditToolbar = ({ invalid, ...props }) => (
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(2),
-    margin: theme.spacing(0, 6)
+    margin: theme.spacing(0, 6),
   },
   root: {
     width: "100%",
@@ -58,47 +58,48 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   icon: {
-    verticalAlign: 'bottom',
+    verticalAlign: "bottom",
     height: 20,
     width: 20,
   },
   details: {
-    alignItems: 'center',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr 1fr',
-    columnGap: '16px'
+    alignItems: "center",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr 1fr",
+    columnGap: "16px",
   },
   column: {
-    flexBasis: '33.33%',
+    flexBasis: "33.33%",
   },
   link: {
     color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
     },
   },
   align: {
-    margin: '19px 0 8px',
-    '& p': {
-      display: 'none'
-    }
-  }
+    margin: "19px 0 8px",
+    "& p": {
+      display: "none",
+    },
+  },
 }));
 
 const CustomAddButton = (props) => {
-  return <Button
-    type="submit"
-    variant="contained"
-    size="small"
-    startIcon={<AddIcon />}
-    color="primary"
-    {...props}
-  >
-    Añadir
-</Button>
-
-}
+  return (
+    <Button
+      type="submit"
+      variant="contained"
+      size="small"
+      startIcon={<AddIcon />}
+      color="primary"
+      {...props}
+    >
+      Añadir
+    </Button>
+  );
+};
 
 export const ManifestationManage = (props) => {
   const classes = useStyles();
@@ -107,8 +108,8 @@ export const ManifestationManage = (props) => {
   const redirect = useRedirect();
 
   const onFailure = (error) => {
-    notify(`${error.message}`)
-    redirect('/manifestations');
+    notify(`${error.message}`);
+    redirect("/manifestations");
     refresh();
   };
 
@@ -122,7 +123,6 @@ export const ManifestationManage = (props) => {
           class="MuiTypography-root makeStyles-title-5 MuiTypography-h6 MuiTypography-colorInherit"
           source="name"
           variant="standard"
-
         />
       }
       {...props}
@@ -162,7 +162,6 @@ export const ManifestationManage = (props) => {
                   validate={[required(), minLength(3)]}
                   fullWidth={true}
                   variant="standard"
-
                 />
                 <TextInput
                   source="footer"
@@ -430,6 +429,116 @@ export const ManifestationManage = (props) => {
                 >
                   <ImageField source="src" />
                 </ImageInput>
+              </div>
+            </AccordionDetails>
+          </Accordion>
+          {/* Configuración de Twitter */}
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>
+                Configuración de Twitter
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className={classes.root}>
+                <BooleanInput
+                  source="config.twitter.active"
+                  label="manifestation.management.config.twitter.active"
+                  fullWidth={true}
+                />
+                <TextInput
+                  source="config.twitter.scheduleSchema"
+                  label="manifestation.management.config.twitter.scheduleSchema"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <NumberInput
+                  source="config.twitter.maxTweets"
+                  label="manifestation.management.config.twitter.maxTweets"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <NumberInput
+                  source="config.twitter.maxTweets"
+                  label="manifestation.management.config.twitter.maxTweetsPerQuery"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <div>Configuración de keys de API</div>
+                <TextInput
+                  source="config.twitter.api.consumerKey"
+                  label="manifestation.management.config.twitter.api.consumerKey"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <TextInput
+                  source="config.twitter.api.consumerSecret"
+                  label="manifestation.management.config.twitter.api.consumerSecret"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <TextInput
+                  source="config.twitter.api.accessTokenKey"
+                  label="manifestation.management.config.twitter.api.accessTokenKey"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <TextInput
+                  source="config.twitter.api.accessTokenSecret"
+                  label="manifestation.management.config.twitter.api.accessTokenSecret"
+                  fullWidth={true}
+                  variant="standard"
+                />
+              </div>
+            </AccordionDetails>
+          </Accordion>
+          {/* Configuración de Instagram */}
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>
+                Configuración de Instagram
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className={classes.root}>
+                <BooleanInput
+                  source="config.instagram.active"
+                  label="manifestation.management.config.instagram.active"
+                  fullWidth={true}
+                />
+                <TextInput
+                  source="config.instagram.scheduleSchema"
+                  label="manifestation.management.config.instagram.scheduleSchema"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <NumberInput
+                  source="config.instagram.maxPosts"
+                  label="manifestation.management.config.instagram.maxPosts"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <div>Configuración de credenciales</div>
+                <TextInput
+                  source="config.instagram.impersonate.username"
+                  label="manifestation.management.config.instagram.impersonate.username"
+                  fullWidth={true}
+                  variant="standard"
+                />
+                <TextInput
+                  source="config.instagram.impersonate.password"
+                  label="manifestation.management.config.instagram.impersonate.password"
+                  fullWidth={true}
+                  variant="standard"
+                />
               </div>
             </AccordionDetails>
           </Accordion>

@@ -181,7 +181,7 @@ const spanish = {
         logoUri: "Logo",
         pageUri: "Page",
       },
-      hashtags : {
+      hashtags: {
         title: "Hashtags",
         name: "Hashtag",
         source: "Source",
@@ -224,10 +224,33 @@ const spanish = {
       images: {
         header: "Header",
         favicon: "Favicon",
-        og:{
+        og: {
           twitter: "Twitter",
           facebook: "Facebook",
-        }
+        },
+      },
+      config: { 
+        twitter: { 
+          active: "Activo",
+          scheduleSchema: "ScheduleSchema",
+          maxTweets: "MaxTweets",
+          maxTweetsPerQuery: "MaxTweetsPerQuery",
+          api:{
+            consumerKey: "ConsumerKey",
+            consumerSecret: "ConsumerSecret",
+            accessTokenKey: "AccessTokenKey",
+            accessTokenSecret: "AccessTokenSecret",
+          }
+         },
+         instagram: { 
+          active: "Activo",
+          scheduleSchema: "ScheduleSchema",
+          maxPosts: "MaxPost",
+          impersonate:{
+            username: "Usuario",
+            password: "Contraseña",
+          }
+         } 
       },
       startDate: "Fecha de inicio",
       endDate: "Fecha de cierre",
