@@ -47,7 +47,7 @@ const UserEditToolbar = ({ invalid, ...props }) => (
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(2),
-    margin: theme.spacing(0, 6),
+    margin: theme.spacing(6, 6),
   },
   root: {
     width: "100%",
@@ -90,23 +90,14 @@ const useStyles = makeStyles((theme) => ({
   inputDate: {
     marginRight: theme.spacing(4),
   },
-}));
+  buttonGoToWeb: {
+    float: "right", 
+    margin: theme.spacing(2, 8, 0),
+    color: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.main,
 
-const CustomAddButton = (props) => {
-  return (
-    <Button
-      type="submit"
-      variant="contained"
-      size="small"
-      startIcon={<AddIcon />}
-      color="primary"
-      onClick={props.onClick}
-      {...props}
-    >
-      Añadir
-    </Button>
-  );
-};
+  },
+}));
 
 export const ManifestationManage = (props) => {
   const classes = useStyles();
@@ -131,7 +122,7 @@ export const ManifestationManage = (props) => {
   return (
     <div>
       <IconButton
-        style={{ float: "right" }}
+        className={classes.buttonGoToWeb}
         source="uri"
         onClick={goToWeb}
         title="Ver marcha"
@@ -162,7 +153,7 @@ export const ManifestationManage = (props) => {
                 id="panel1a-header"
               >
                 <Typography className={classes.heading}>
-                  Titulo y bajada / Footer / Fechas
+                  Título y bajada / Footer / Fechas
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -226,7 +217,7 @@ export const ManifestationManage = (props) => {
                   source="sponsors"
                   label="manifestation.management.sponsors.title"
                 >
-                  <SimpleFormIterator addButton={<CustomAddButton />}>
+                  <SimpleFormIterator>
                     <TextInput
                       source="name"
                       label="manifestation.management.sponsors.name"
@@ -263,7 +254,7 @@ export const ManifestationManage = (props) => {
                   source="hashtags"
                   label="manifestation.management.hashtags.title"
                 >
-                  <SimpleFormIterator addButton={<CustomAddButton />}>
+                  <SimpleFormIterator>
                     <TextInput
                       source="name"
                       label="manifestation.management.hashtags.name"

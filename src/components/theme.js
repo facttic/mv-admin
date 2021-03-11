@@ -8,7 +8,8 @@ export const theme = createMuiTheme(
     palette: {
       primary: {
         main: orange[400],
-        light: "#ff0000"
+        light: "#ff0000",
+        dark: grey[900]
       },
       secondary: {
         main: grey[200],
@@ -16,6 +17,11 @@ export const theme = createMuiTheme(
       },
       background: {
         default: grey[200]
+      }
+    },
+    overrides: {
+      MuiButton: {
+        root: {background:orange[400]}
       }
     }
   })
