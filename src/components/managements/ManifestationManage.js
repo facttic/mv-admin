@@ -93,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomAddButton = (props) => {
+  console.log("button",props);
   return (
     <Button
       type="submit"
@@ -100,6 +101,7 @@ const CustomAddButton = (props) => {
       size="small"
       startIcon={<AddIcon />}
       color="primary"
+      onClick={props.onClick}
       {...props}
     >
       Añadir
