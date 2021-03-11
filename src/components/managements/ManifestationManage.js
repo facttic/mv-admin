@@ -93,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomAddButton = (props) => {
-  console.log("button",props);
   return (
     <Button
       type="submit"
