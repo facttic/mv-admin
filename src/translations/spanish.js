@@ -174,8 +174,8 @@ const spanish = {
       title: "Creando Manifestación",
     },
     management: {
-      title: "Titulo",
-      subtitle: "Subtitulo",
+      title: "Título",
+      subtitle: "Subtítulo",
       description: "Descripción",
       footer: "Footer",
       sponsors: {
@@ -190,14 +190,14 @@ const spanish = {
         source: "Source",
       },
       metadata: {
-        title: "Titulo",
+        title: "Título",
         keywords: "Keywords",
         description: "Descripción",
       },
       styles: {
         colors: {
           background: "Fondo",
-          accent: "Accent",
+          accent: "Principal",
         },
         text: {
           title: {
@@ -221,7 +221,7 @@ const spanish = {
           },
         },
         cards: {
-          darkmode: "Darkmode",
+          darkmode: "Modo oscuro",
         },
       },
       images: {

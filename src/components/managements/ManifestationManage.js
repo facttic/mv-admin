@@ -84,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  inputDate: {
+    marginRight: theme.spacing(4),
+  }
 }));
 
 const CustomAddButton = (props) => {
@@ -171,6 +174,7 @@ export const ManifestationManage = (props) => {
                   variant="standard"
                 />
                 <DateInput
+                  className={classes.inputDate}
                   source="startDate"
                   label="manifestation.management.startDate"
                   validate={[required()]}
