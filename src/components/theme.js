@@ -19,11 +19,7 @@ export const theme = createMuiTheme(
         default: grey[200]
       }
     },
-    overrides: {
-      MuiButton: {
-        root: {background:orange[400]}
-      }
-    }
+    
   })
 );
 
