@@ -212,6 +212,7 @@ const spanish = {
             font: "Fuente",
             color: "Color",
           },
+          placeholder: "Google fonts ej. 'roboto'",
         },
         thumbnails: {
           columns: "Columnas",

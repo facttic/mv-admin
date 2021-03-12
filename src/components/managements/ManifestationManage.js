@@ -19,6 +19,7 @@ import {
   useRedirect,
   NumberInput,
   useGetOne,
+  useTranslate
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -104,6 +105,7 @@ export const ManifestationManage = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
+  const translate = useTranslate();
 
   const onFailure = (error) => {
     notify(`${error.message}`);
@@ -301,6 +303,7 @@ export const ManifestationManage = (props) => {
                       source="styles.text.title.font"
                       label="manifestation.management.styles.text.title.font"
                       variant="standard"
+                      placeholder={translate("manifestation.management.styles.text.placeholder")}
                     />
                     <ColorInput
                       source="styles.text.title.color"
@@ -314,6 +317,7 @@ export const ManifestationManage = (props) => {
                       source="styles.text.subtitle.font"
                       label="manifestation.management.styles.text.subtitle.font"
                       variant="standard"
+                      placeholder={translate("manifestation.management.styles.text.placeholder")}
                     />
                     <ColorInput
                       source="styles.text.subtitle.color"
@@ -327,6 +331,7 @@ export const ManifestationManage = (props) => {
                       source="styles.text.body.font"
                       label="manifestation.management.styles.text.body.font"
                       variant="standard"
+                      placeholder={translate("manifestation.management.styles.text.placeholder")}
                     />
                     <ColorInput
                       source="styles.text.body.color"
