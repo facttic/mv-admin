@@ -560,33 +560,6 @@ export const ManifestationManage = (props) => {
                 </div>
               </AccordionDetails>
             </Accordion>
-            {/* Configuración de Media Cleaner */}
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>
-                  Configuración de Media Cleaner
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className={classes.root}>
-                  <BooleanInput
-                    source="config.mediaCleaner.active"
-                    label="manifestation.management.config.mediaCleaner.active"
-                    fullWidth={true}
-                  />
-                  <TextInput
-                    source="config.mediaCleaner.scheduleSchema"
-                    label="manifestation.management.config.mediaCleaner.scheduleSchema"
-                    fullWidth={true}
-                    variant="standard"
-                  />
-                </div>
-              </AccordionDetails>
-            </Accordion>
           </div>
         </SimpleForm>
       </Edit>

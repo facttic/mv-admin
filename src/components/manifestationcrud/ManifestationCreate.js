@@ -8,7 +8,7 @@ import {
   Loading,
   SelectArrayInput,
 } from "react-admin";
-import { FormStyles } from "../FormStyles"
+import { FormStyles } from "../FormStyles";
 
 const minLength = (min) => (value) => {
   if (value && value.length < min) {
@@ -17,11 +17,12 @@ const minLength = (min) => (value) => {
 };
 
 const validateUri = (value) => {
+  console.log("Value", value);
   let reg = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i;
-  if (reg.test(value) === false) {
+  if (reg.test(value) === false && !value.includes("localhost")) {
     return "La uri no debe tener protocolo ni / al final, ejemplo 'sub.dominio.com'";
   }
-}
+};
 
 export const ManifestationCreate = (props) => {
   const classes = FormStyles();
@@ -30,7 +31,7 @@ export const ManifestationCreate = (props) => {
     "users",
     { page: 1, perPage: 999 },
     { field: "name", order: "ASC" },
-    { superadmin:false}
+    { superadmin: false }
   );
   const arrayData = Object.keys(data).map((key) => {
     return data[key];
@@ -54,7 +55,13 @@ export const ManifestationCreate = (props) => {
           label="manifestation.create.uri"
           validate={[required(), validateUri]}
         />
-        <SelectArrayInput source="userIds" label="manifestation.create.user" optionText="name" choices={arrayData} validate={[required()]}/>
+        <SelectArrayInput
+          source="userIds"
+          label="manifestation.create.user"
+          optionText="name"
+          choices={arrayData}
+          validate={[required()]}
+        />
       </SimpleForm>
     </Create>
   );
