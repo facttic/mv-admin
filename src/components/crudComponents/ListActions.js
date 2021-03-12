@@ -8,9 +8,6 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
-  fab: {
-    backgroundColor: theme.palette.primary.main,
-  },
   title: {
     padding: theme.spacing(1, 2)
   },
@@ -46,7 +43,7 @@ const ListActions = (props) => {
       </div>
       <div>
       <Link to={`${basePath}/create`} className={classes.fabs} >
-        <Fab className={classes.fab} aria-label="add" size="medium"
+        <Fab color="primary" aria-label="add" size="medium"
           label="+">
           <AddIcon />
         </Fab>

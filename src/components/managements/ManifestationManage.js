@@ -22,10 +22,8 @@ import {
   useTranslate
 } from "react-admin";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import AddIcon from "@material-ui/icons/Add";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -94,9 +92,6 @@ const useStyles = makeStyles((theme) => ({
   buttonGoToWeb: {
     float: "right", 
     margin: theme.spacing(2, 8, 0),
-    color: theme.palette.primary.dark,
-    backgroundColor: theme.palette.primary.main,
-
   },
 }));
 
@@ -123,15 +118,16 @@ export const ManifestationManage = (props) => {
 
   return (
     <div>
-      <IconButton
+      <Fab
         className={classes.buttonGoToWeb}
         source="uri"
         onClick={goToWeb}
+        color="primary"
         title="Ver marcha"
         aria-label="delete"
       >
         <VisibilityIcon />
-      </IconButton>
+      </Fab>
       <Edit
         className={classes.container}
         onFailure={onFailure}
