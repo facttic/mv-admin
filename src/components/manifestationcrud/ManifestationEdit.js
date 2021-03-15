@@ -10,6 +10,7 @@ import {
   ReferenceArrayInput,
 } from "react-admin";
 import { useState } from "react";
+import { FormStyles } from "../FormStyles"
 
 const minLength = (min) => (value) => {
   if (value && value.length < min) {
@@ -25,6 +26,8 @@ const validateUri = (value) => {
 }
 
 export const ManifestationEdit = (props) => {
+  const classes = FormStyles();
+
   let [Users, UsersSelected, usersSelectedList] = useState("");
   UsersSelected = useGetList(
     "users",
@@ -51,26 +54,31 @@ export const ManifestationEdit = (props) => {
   });
 
   return (
-    <Edit undoable={false} title="manifestation.create.title" {...props}>
-      <SimpleForm>
-        <TextInput
-          source="name"
-          label="manifestation.create.name"
-          validate={[required(), minLength(3)]}
-        />
-        <TextInput
-          source="uri"
-          label="manifestation.create.uri"
-          validate={[required(), validateUri]}
-        />
-        <ReferenceArrayInput
-          source="userIds"
-          reference="users"
-          filter={{ superadmin: false }}
-        >
-          <SelectArrayInput initialValue={usersSelectedList} label="manifestation.create.user" optionText="name" />
-        </ReferenceArrayInput>
-      </SimpleForm>
-    </Edit>
+    <div className={classes.createBox}>
+      <Edit undoable={false} title="manifestation.create.title" {...props} classes={classes}>
+        <SimpleForm className={classes.createForm}>
+          <TextInput
+            source="name"
+            label="manifestation.create.name"
+            validate={[required(), minLength(3)]}
+            fullWidth
+          />
+          <TextInput
+            source="uri"
+            label="manifestation.create.uri"
+            validate={[required(), validateUri]}
+            fullWidth
+          />
+          <ReferenceArrayInput
+            source="userIds"
+            reference="users"
+            filter={{ superadmin: false }}
+            fullWidth
+          >
+            <SelectArrayInput initialValue={usersSelectedList} label="manifestation.create.user" optionText="name" />
+          </ReferenceArrayInput>
+        </SimpleForm>
+      </Edit>
+    </div>
   );
 };

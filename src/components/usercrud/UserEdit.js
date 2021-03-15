@@ -15,7 +15,6 @@ export const UserEdit = (props) => {
 
   return (
     <div className={classes.createBox}>
-
       <Edit undoable={false} title="Editando Usuario" {...props} classes={classes}>
         <SimpleForm className={classes.createForm}>
           <TextInput
