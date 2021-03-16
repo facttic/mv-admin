@@ -36,6 +36,7 @@ const checkIfimageIsDeleted = (imageParams) => {
   if(!imageParams){return}
   if(imageParams.header === null){imageParams.header = {src:""}};
   if(imageParams.favicon === null){imageParams.favicon = {src:""}};
+  if(imageParams.background === null){imageParams.background = {src:""}};
   if(imageParams.og.twitter === null){imageParams.og.twitter = {src:""}};
   if(imageParams.og.facebook === null){imageParams.og.facebook = {src:""}};
 };
@@ -110,6 +111,7 @@ const dataProvider = {
         params.data.images && (
         params.data.images.header.rawFile ||
         params.data.images.favicon.rawFile ||
+        params.data.images.background.rawFile||
         params.data.images.og.twitter.rawFile ||
         params.data.images.og.facebook.rawFile);
       if (

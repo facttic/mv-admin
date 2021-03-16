@@ -228,6 +228,7 @@ const spanish = {
       images: {
         header: "Header",
         favicon: "Favicon",
+        background: "Background",
         og: {
           twitter: "Twitter",
           facebook: "Facebook",
