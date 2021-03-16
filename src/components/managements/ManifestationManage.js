@@ -420,6 +420,15 @@ export const ManifestationManage = (props) => {
                     <ImageField source="src" />
                   </ImageInput>
                   <ImageInput
+                    source="images.background"
+                    label="manifestation.management.images.background"
+                    multiple={false}
+                    accept="image/*"
+                    placeholder={<p>Drop your file here</p>}
+                  >
+                    <ImageField source="src" />
+                  </ImageInput>
+                  <ImageInput
                     source="images.favicon"
                     label="manifestation.management.images.favicon"
                     multiple={false}
