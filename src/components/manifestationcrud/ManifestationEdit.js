@@ -60,18 +60,21 @@ export const ManifestationEdit = (props) => {
           <TextInput
             source="name"
             label="manifestation.create.name"
+            variant="standard"
             validate={[required(), minLength(3)]}
             fullWidth
           />
           <TextInput
             source="uri"
             label="manifestation.create.uri"
+            variant="standard"
             validate={[required(), validateUri]}
             fullWidth
           />
           <ReferenceArrayInput
             source="userIds"
             reference="users"
+            variant="standard"
             filter={{ superadmin: false }}
             fullWidth
           >

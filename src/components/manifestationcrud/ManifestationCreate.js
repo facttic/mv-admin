@@ -49,18 +49,21 @@ export const ManifestationCreate = (props) => {
           <TextInput
             source="name"
             label="manifestation.create.name"
+            variant="standard"
             fullWidth
             validate={[required(), minLength(3)]}
           />
           <TextInput
             source="uri"
             label="manifestation.create.uri"
+            variant="standard"
             fullWidth
             validate={[required(), validateUri]}
           />
           <SelectArrayInput
             source="userIds"
             label="manifestation.create.user"
+            variant="standard"
             optionText="name"
             fullWidth
             choices={arrayData}

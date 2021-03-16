@@ -10,7 +10,7 @@ import { theme } from "../theme";
 const layoutStyles = makeStyles(() => ({
   layout: {
     backgroundColor: theme.palette.secondary.main,
-    '& .RaLayout-appFrame-3': {
+    '& div:first-child': {
       marginTop: '0px'
     }
   }

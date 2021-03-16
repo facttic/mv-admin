@@ -31,7 +31,7 @@ export const UserEdit = (props) => {
             <p> Marcha </p>
           </div>
           <ManifestationTextField label="user.edit.manifestation" />
-          <BooleanInput source="superadmin" />
+          <BooleanInput className={classes.boolean} source="superadmin" />
         </SimpleForm>
       </Edit>
     </div>

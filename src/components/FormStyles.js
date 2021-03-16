@@ -8,11 +8,15 @@ export const FormStyles = makeStyles((theme) => ({
     },
     createBox: {
       display:"flex", 
-      justifyContent:"center"
+      justifyContent:"center",
+      padding:"70px"
     },
     root: {
       margin: theme.spacing(4, 6, 6, 6),
       width: "70%",
       minWidth: "200px"
+    },
+    boolean:{
+      padding: theme.spacing(5,0,0,0),
     }
   }))
