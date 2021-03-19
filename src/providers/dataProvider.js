@@ -1,7 +1,6 @@
 import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
-
-const apiUrl = "http://localhost:3333/api";
+const { REACT_APP_API_URL: API_URL } = process.env;
 
 const httpClient = async (url, options = {}) => {
   if (!options.headers) {
@@ -52,7 +51,7 @@ const dataProvider = {
       perPage: perPage,
       page: page,
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(
+    const url = `${API_URL}/${resource}?${stringify(query)}&${stringify(
       params.filter
     )}`;
     const { json } = await httpClient(url);
@@ -65,7 +64,7 @@ const dataProvider = {
   getOne: async (resource, params) => {
     try {
       console.log("get one", resource, params);
-      const url = `${apiUrl}/${resource}/${params.id}`;
+      const url = `${API_URL}/${resource}/${params.id}`;
       const { json } = await httpClient(url);
       return { data: json };
     } catch (e) {
@@ -75,7 +74,7 @@ const dataProvider = {
 
   getMany: async (resource, params) => {
     console.log("get Many", resource, params);
-    const url = `${apiUrl}/${resource}?${stringify({ _id: params.ids })}`;
+    const url = `${API_URL}/${resource}?${stringify({ _id: params.ids })}`;
     const { json } = await httpClient(url);
     console.log(json);
     return { data: json.data };
@@ -93,7 +92,7 @@ const dataProvider = {
         [params.target]: params.id,
       }),
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    const url = `${API_URL}/${resource}?${stringify(query)}`;
     console.log(url);
     const { json } = await httpClient(url);
     console.log(json);
@@ -105,7 +104,7 @@ const dataProvider = {
 
   update: async (resource, params) => {
     try {
-      const url = `${apiUrl}/${resource}/${params.id}`;
+      const url = `${API_URL}/${resource}/${params.id}`;
       checkIfimageIsDeleted(params.data.images);
       const containsImage =
         params.data.images && (
@@ -145,7 +144,7 @@ const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
     const { json } = await httpClient(
-      `${apiUrl}/${resource}?${stringify(query)}`,
+      `${API_URL}/${resource}?${stringify(query)}`,
       {
         method: "PUT",
         body: JSON.stringify(params.data),
@@ -156,7 +155,7 @@ const dataProvider = {
 
   create: async (resource, params) => {
     console.log("Create", resource);
-    const { json } = await httpClient(`${apiUrl}/${resource}?${resource}`, {
+    const { json } = await httpClient(`${API_URL}/${resource}?${resource}`, {
       method: "POST",
       body: JSON.stringify(params.data),
     });
@@ -164,7 +163,7 @@ const dataProvider = {
   },
 
   delete: async (resource, params) => {
-    const url = `${apiUrl}/${resource}/${params.id}`;
+    const url = `${API_URL}/${resource}/${params.id}`;
     const { json } = await httpClient(url, {
       method: "DELETE",
     });
@@ -176,7 +175,7 @@ const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
     const { json } = await httpClient(
-      `${apiUrl}/${resource}?${stringify(query)}`,
+      `${API_URL}/${resource}?${stringify(query)}`,
       {
         method: "DELETE",
         body: JSON.stringify(params.data),

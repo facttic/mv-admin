@@ -1,8 +1,9 @@
-const domain = "http://localhost:3333/api/";
+
+const { REACT_APP_API_URL: API_URL } = process.env;
 
 const authProvider = {
   login: async (authdata) => {
-    const request = new Request(domain + "users/login", {
+    const request = new Request(API_URL + "/users/login", {
       method: "POST",
       body: JSON.stringify({
         email: authdata.email,
@@ -27,7 +28,7 @@ const authProvider = {
       const headers = new Headers({ "Content-Type": "application/json" });
       const { token } = JSON.parse(localStorage.getItem("auth"));
       headers.set("Authorization", `Bearer ${token}`);
-      const request = new Request(domain + "users/me/logout", {
+      const request = new Request(API_URL + "/users/me/logout", {
         method: "POST",
         headers: headers,
       });
@@ -59,7 +60,7 @@ const authProvider = {
       const headers = new Headers({ "Content-Type": "application/json" });
       const { token } = JSON.parse(localStorage.getItem("auth"));
       headers.set("Authorization", `Bearer ${token}`);
-      const request = new Request(domain + "users/me", {
+      const request = new Request(API_URL + "/users/me", {
         method: "POST",
         headers: headers,
       });
