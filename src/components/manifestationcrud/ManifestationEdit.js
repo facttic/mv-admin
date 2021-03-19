@@ -18,7 +18,7 @@ const minLength = (min) => (value) => {
 };
 
 const validateUri = (value) => {
-  let reg = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i;
+  let reg = /^(?!:\/\/)([a-zA-Z0-9]+\.)?([a-zA-Z0-9][a-zA-Z0-9-]+\.){2,6}?[a-zA-Z]{2,6}?$/i
   if (reg.test(value) === false && !value.includes("localhost")) {
     return "La uri no debe tener protocolo ni / al final, ejemplo 'sub.dominio.com'";
   }
