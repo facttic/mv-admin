@@ -111,7 +111,7 @@ export const ManifestationManage = (props) => {
   const manifestation = useGetOne("manifestations", props.id);
 
   const goToWeb = (e) => {
-    const url = `https://${manifestation.data.uri}`;
+    const url = `http://${manifestation.data.uri}`;
     var win = window.open(url, "_blank");
     win.focus();
   };

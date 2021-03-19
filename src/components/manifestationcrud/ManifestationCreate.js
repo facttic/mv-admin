@@ -43,26 +43,34 @@ export const ManifestationCreate = (props) => {
     return <p>ERROR</p>;
   }
   return (
-    <Create title="manifestation.create.title" {...props}>
-      <SimpleForm>
-        <TextInput
-          source="name"
-          label="manifestation.create.name"
-          validate={[required(), minLength(3)]}
-        />
-        <TextInput
-          source="uri"
-          label="manifestation.create.uri"
-          validate={[required(), validateUri]}
-        />
-        <SelectArrayInput
-          source="userIds"
-          label="manifestation.create.user"
-          optionText="name"
-          choices={arrayData}
-          validate={[required()]}
-        />
-      </SimpleForm>
-    </Create>
+    <div className={classes.createBox}>
+      <Create title="manifestation.create.title" {...props} classes={classes}>
+        <SimpleForm className={classes.createForm}>
+          <TextInput
+            source="name"
+            label="manifestation.create.name"
+            variant="standard"
+            fullWidth
+            validate={[required(), minLength(3)]}
+          />
+          <TextInput
+            source="uri"
+            label="manifestation.create.uri"
+            variant="standard"
+            fullWidth
+            validate={[required(), validateUri]}
+          />
+          <SelectArrayInput
+            source="userIds"
+            label="manifestation.create.user"
+            variant="standard"
+            optionText="name"
+            fullWidth
+            choices={arrayData}
+            validate={[required()]}
+          />
+        </SimpleForm>
+      </Create>
+    </div>
   );
 };

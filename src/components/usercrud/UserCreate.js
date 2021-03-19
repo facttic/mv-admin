@@ -51,7 +51,7 @@ return (
         fullWidth
         validate={[required(), matchPassword]}
       />
-      <BooleanInput source="superadmin" />
+      <BooleanInput  className={classes.boolean} source="superadmin" />
     </SimpleForm>
   </Create>
   </div>

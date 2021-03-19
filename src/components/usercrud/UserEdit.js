@@ -15,7 +15,6 @@ export const UserEdit = (props) => {
 
   return (
     <div className={classes.createBox}>
-
       <Edit undoable={false} title="Editando Usuario" {...props} classes={classes}>
         <SimpleForm className={classes.createForm}>
           <TextInput
@@ -32,7 +31,7 @@ export const UserEdit = (props) => {
             <p> Marcha </p>
           </div>
           <ManifestationTextField label="user.edit.manifestation" />
-          <BooleanInput source="superadmin" />
+          <BooleanInput className={classes.boolean} source="superadmin" />
         </SimpleForm>
       </Edit>
     </div>
